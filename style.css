@@ -1,4 +1,4 @@
-/* style.css - DefendIQ Enterprise - Phase 2 Complete */
+/* style.css - DefendIQ Enterprise - Complete Phase 2 with Training System */
 :root {
     --primary: #2a9d8f;
     --primary-dark: #1d7874;
@@ -131,6 +131,16 @@ header {
     transform: translateY(-2px);
 }
 
+.btn-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
 .btn-sm {
     padding: 6px 12px;
     font-size: 0.8rem;
@@ -148,6 +158,168 @@ header {
     gap: 20px;
     padding: 20px 0;
     min-height: calc(100vh - 80px);
+}
+
+/* Training Module Styles */
+.training-container {
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: var(--box-shadow-lg);
+    border: 1px solid #333;
+}
+
+.module-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.module-title {
+    font-size: 2.5rem;
+    color: var(--light);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.module-description {
+    font-size: 1.1rem;
+    color: var(--gray-light);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.content-section {
+    background: #2a2a2a;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--primary);
+}
+
+.section-title {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Training Status */
+.training-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background: var(--secondary);
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--success);
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.learning {
+    background: var(--info);
+}
+
+.status-indicator.quiz {
+    background: var(--danger);
+}
+
+/* Quiz Container */
+.quiz-container {
+    background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin: 30px 0;
+    border: 2px solid var(--accent);
+}
+
+.quiz-question {
+    font-size: 1.2rem;
+    color: var(--light);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.quiz-option {
+    background: #333;
+    border: 2px solid #444;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quiz-option:hover {
+    background: #3a3a3a;
+    border-color: var(--primary);
+}
+
+.quiz-option.selected {
+    background: var(--primary-light);
+    border-color: var(--primary);
+}
+
+.quiz-option.correct {
+    background: rgba(42, 157, 143, 0.2);
+    border-color: var(--success);
+}
+
+.quiz-option.incorrect {
+    background: rgba(231, 111, 81, 0.2);
+    border-color: var(--danger);
+}
+
+.option-marker {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.quiz-option.selected .option-marker {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray-light);
 }
 
 /* Dashboard Section */
@@ -794,7 +966,7 @@ header {
     gap: 20px;
 }
 
-/* Zara AI Chat */
+/* Enhanced Zara AI Chat */
 .zara-ai {
     background-color: #1e1e1e;
     border-radius: var(--border-radius-lg);
@@ -803,6 +975,19 @@ header {
     flex-direction: column;
     height: 500px;
     border: 1px solid #2a2a2a;
+    transition: var(--transition);
+}
+
+.zara-training-mode {
+    border: 2px solid var(--accent);
+}
+
+.zara-quiz-mode {
+    border: 2px solid var(--danger);
+}
+
+.zara-celebration-mode {
+    border: 2px solid var(--success);
 }
 
 .zara-header {
@@ -1027,6 +1212,235 @@ header {
     color: var(--gray);
 }
 
+/* Certificate Styles */
+.certificate-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.certificate-modal.active {
+    display: flex;
+}
+
+.certificate {
+    background: linear-gradient(135deg, #0c2461, #1e3799);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.certificate.bronze {
+    background: linear-gradient(135deg, #cd7f32, #b08d57);
+}
+
+.certificate.silver {
+    background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+    color: #333;
+}
+
+.certificate.gold {
+    background: linear-gradient(135deg, #ffd700, #ffec8b);
+    color: #333;
+}
+
+.certificate.platinum {
+    background: linear-gradient(135deg, #e5e4e2, #ffffff);
+    color: #333;
+}
+
+.certificate::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: float 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-20px, -20px) rotate(360deg); }
+}
+
+.certificate-header {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.certificate-logo {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.certificate-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.certificate-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.certificate-body {
+    margin: 30px 0;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.certificate-text {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.recipient-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 20px 0;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.module-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 15px 0;
+    color: var(--light);
+}
+
+.certificate.certificate.silver .module-name,
+.certificate.certificate.gold .module-name,
+.certificate.certificate.platinum .module-name {
+    color: #333;
+}
+
+.certificate-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.signature-area {
+    text-align: left;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.signature-name {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.signature-title {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.qrcode-area {
+    text-align: right;
+}
+
+.qrcode-placeholder {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.certificate-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.share-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.share-options {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2a2a2a;
+    border-radius: var(--border-radius);
+    padding: 10px;
+    box-shadow: var(--box-shadow-lg);
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 150px;
+    margin-bottom: 10px;
+    z-index: 1000;
+}
+
+.share-dropdown:hover .share-options {
+    display: flex;
+}
+
+.share-option {
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: var(--light);
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.share-option:hover {
+    background: var(--primary);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .main-content {
@@ -1049,6 +1463,14 @@ header {
     
     .challenges-container {
         grid-template-columns: 1fr;
+    }
+    
+    .certificate {
+        padding: 30px;
+    }
+    
+    .certificate-title {
+        font-size: 2rem;
     }
 }
 
@@ -1076,6 +1498,24 @@ header {
     .tab {
         flex: 1;
         min-width: 120px;
+        text-align: center;
+    }
+    
+    .module-title {
+        font-size: 2rem;
+    }
+    
+    .certificate-footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .signature-area {
+        text-align: center;
+    }
+    
+    .qrcode-area {
         text-align: center;
     }
 }
@@ -1118,6 +1558,22 @@ header {
     
     .badge i {
         font-size: 1.5rem;
+    }
+    
+    .module-title {
+        font-size: 1.8rem;
+    }
+    
+    .certificate {
+        padding: 20px;
+    }
+    
+    .certificate-title {
+        font-size: 1.8rem;
+    }
+    
+    .recipient-name {
+        font-size: 1.6rem;
     }
 }
 
@@ -1234,29 +1690,55 @@ a:focus {
     outline-offset: 2px;
 }
 
-/* Print Styles */
+/* Print Styles for Certificates */
 @media print {
-    .nav-buttons,
-    .sidebar,
-    .zara-ai,
-    .quick-actions,
-    .notifications {
+    body * {
+        visibility: hidden;
+    }
+    
+    .certificate-modal,
+    .certificate-modal * {
+        visibility: visible;
+    }
+    
+    .certificate-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: flex !important;
+        padding: 0;
+    }
+    
+    .certificate {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+        border-radius: 0;
+    }
+    
+    .certificate-actions {
         display: none;
     }
     
-    .main-content {
-        grid-template-columns: 1fr;
+    .share-dropdown {
+        display: none;
     }
-    
-    body {
-        background: white;
-        color: black;
-    }
-    
-    .dashboard {
-        background: white;
-        color: black;
-        box-shadow: none;
-        border: 1px solid #ccc;
-    }
+}
+
+/* Content Editable Styles */
+[contenteditable="true"] {
+    border-bottom: 2px dashed var(--accent);
+    padding: 5px;
+    margin: 5px 0;
+    min-height: 40px;
+    display: inline-block;
+}
+
+[contenteditable="true"]:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-sm);
 }
