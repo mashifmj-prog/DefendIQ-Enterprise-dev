@@ -3,1084 +3,854 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DefendIQ Enterprise - Enhanced Certification System</title>
+    <title>DefendIQ Enterprise - Advanced Analytics & Gamification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            /* Enhanced Color System */
             --primary: #1a56db;
+            --primary-dark: #1e40af;
+            --primary-light: #3b82f6;
             --secondary: #0e2a47;
-            --accent: #3b82f6;
+            --accent: #8b5cf6;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --light: #f8fafc;
-            --dark: #1e293b;
-            --bronze: #cd7f32;
-            --silver: #c0c0c0;
-            --gold: #ffd700;
-            --platinum: #e5e4e2;
+            --info: #06b6d4;
+            
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-sidebar: #0e2a47;
+            
+            /* Text Colors */
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-light: #ffffff;
+            
+            /* Gamification Colors */
+            --points-gold: #ffd700;
+            --points-silver: #c0c0c0;
+            --points-bronze: #cd7f32;
+            --points-platinum: #e5e4e2;
+            
+            /* Border Colors */
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
+            --gradient-success: linear-gradient(135deg, var(--success), #34d399);
+            --gradient-warning: linear-gradient(135deg, var(--warning), #fbbf24);
+            --gradient-danger: linear-gradient(135deg, var(--danger), #f87171);
         }
-        
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-light: #334155;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f0f4f8;
-            color: var(--dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
             line-height: 1.6;
         }
-        
+
         .container {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
-        
-        /* Sidebar Styles */
+
+        /* Enhanced Sidebar */
         .sidebar {
-            background: var(--secondary);
-            color: white;
-            padding: 1.5rem 1rem;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 100;
+            background: var(--bg-sidebar);
+            color: var(--text-light);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            width: 280px;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
+
         .logo h1 {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         .nav-links {
             list-style: none;
+            margin-bottom: 2rem;
         }
-        
+
         .nav-links li {
             margin-bottom: 0.5rem;
         }
-        
+
         .nav-links a {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 1rem 1.25rem;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 12px;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
-        
+
         .nav-links a:hover, .nav-links a.active {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             color: white;
+            transform: translateX(8px);
         }
-        
+
         .nav-links i {
-            margin-right: 10px;
+            margin-right: 12px;
             font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
         }
-        
-        /* Main Content Styles */
+
+        /* User Profile in Sidebar */
+        .user-profile {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--points-gold);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Main Content */
         .main-content {
-            padding: 2rem;
-            overflow-y: auto;
+            padding: 2rem 3rem;
+            margin-left: 280px;
+            background: var(--bg-primary);
         }
-        
+
+        /* Enhanced Header */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-light);
         }
-        
-        .user-info {
+
+        .header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-actions {
             display: flex;
+            gap: 1rem;
             align-items: center;
         }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        /* Dashboard Cards */
-        .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        
-        .card-icon.blue {
-            background: var(--primary);
-        }
-        
-        .card-icon.green {
-            background: var(--success);
-        }
-        
-        .card-icon.orange {
-            background: var(--warning);
-        }
-        
-        .card-icon.red {
-            background: var(--danger);
-        }
-        
-        .card-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .card-description {
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-        
-        /* Training Modules */
-        .training-modules {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .module-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .module-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .module-header {
-            padding: 1.5rem;
-            color: white;
-        }
-        
-        .module-header.network {
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-        }
-        
-        .module-header.phishing {
-            background: linear-gradient(135deg, #b91c1c, #ef4444);
-        }
-        
-        .module-header.password {
-            background: linear-gradient(135deg, #059669, #10b981);
-        }
-        
-        .module-header.data {
-            background: linear-gradient(135deg, #7e22ce, #a855f7);
-        }
-        
-        .module-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .module-description {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .module-content {
-            padding: 1.5rem;
-        }
-        
-        .module-progress {
-            margin-bottom: 1rem;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-        }
-        
-        .progress-fill.network {
-            background: #3b82f6;
-        }
-        
-        .progress-fill.phishing {
-            background: #ef4444;
-        }
-        
-        .progress-fill.password {
-            background: #10b981;
-        }
-        
-        .progress-fill.data {
-            background: #a855f7;
-        }
-        
-        .module-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            border-radius: 50px;
+            padding: 0.75rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
         }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
-        
-        .btn-primary:hover {
-            background: #1e40af;
+
+        /* Enhanced Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
-        
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        /* Zara AI Chat */
-        .zara-ai {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
-            margin-top: 2rem;
         }
-        
-        .zara-header {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .zara-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        .zara-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        .zara-status {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-        
-        .zara-chat {
-            height: 300px;
-            padding: 1.5rem;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .message {
-            max-width: 80%;
-            padding: 0.75rem 1rem;
-            border-radius: 18px;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        
-        .message.ai {
-            align-self: flex-start;
-            background: #f1f5f9;
-            border-bottom-left-radius: 5px;
-        }
-        
-        .message.user {
-            align-self: flex-end;
-            background: var(--primary);
-            color: white;
-            border-bottom-right-radius: 5px;
-        }
-        
-        .zara-input {
-            display: flex;
-            padding: 1rem 1.5rem;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .zara-input input {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 25px;
-            outline: none;
-        }
-        
-        .zara-input button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-left: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Certificate Modal */
-        .modal {
-            display: none;
-            position: fixed;
+
+        .card::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-primary);
         }
-        
-        .modal.active {
-            display: flex;
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
         }
-        
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 800px;
-            overflow: hidden;
-            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .certificate {
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .certificate.network {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border: 15px solid #1e40af;
-        }
-        
-        .certificate.phishing {
-            background: linear-gradient(135deg, #fef2f2, #fee2e2);
-            border: 15px solid #dc2626;
-        }
-        
-        .certificate.password {
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            border: 15px solid #16a34a;
-        }
-        
-        .certificate.data {
-            background: linear-gradient(135deg, #faf5ff, #f3e8ff);
-            border: 15px solid #7c3aed;
-        }
-        
-        .certificate-badge {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: white;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .badge-bronze {
-            background: linear-gradient(135deg, #cd7f32, #a56a28);
-        }
-        
-        .badge-silver {
-            background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
-        }
-        
-        .badge-gold {
-            background: linear-gradient(135deg, #ffd700, #d4af37);
-        }
-        
-        .badge-platinum {
-            background: linear-gradient(135deg, #e5e4e2, #c0c0c0);
-        }
-        
-        .certificate-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-        
-        .certificate-subtitle {
-            font-size: 1.2rem;
-            color: #64748b;
-            margin-bottom: 2rem;
-        }
-        
-        .certificate-details {
-            margin: 2rem 0;
-        }
-        
-        .certificate-name {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-        
-        .certificate-module {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .certificate-score {
-            font-size: 1.2rem;
-            color: #64748b;
-            margin-bottom: 2rem;
-        }
-        
-        .certificate-qr {
-            margin: 1rem auto;
-            width: 120px;
-            height: 120px;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-        }
-        
-        .certificate-footer {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: #64748b;
-        }
-        
-        .modal-actions {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: flex-end;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        /* Management Dashboard */
-        .management-dashboard {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 2rem;
-        }
-        
-        .dashboard-header {
+
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
         }
-        
-        .dashboard-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
-        
-        .team-stats {
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Analytics Grid */
+        .analytics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .chart-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
             margin-bottom: 2rem;
         }
-        
-        .stat-card {
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
+
+        .chart-title {
+            font-size: 1.4rem;
             font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .leaderboard-item:hover {
+            transform: translateX(5px);
+            background: var(--bg-secondary);
+        }
+
+        .rank {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .rank-1 { background: var(--points-gold); }
+        .rank-2 { background: var(--points-silver); }
+        .rank-3 { background: var(--points-bronze); }
+        .rank-4 { background: var(--primary); }
+
+        /* Training Modules Grid */
+        .training-modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .module-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .module-header {
+            padding: 2rem;
+            color: white;
+            position: relative;
+        }
+
+        .module-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .module-content {
+            padding: 2rem;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 0.5rem;
         }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #64748b;
+
+        .progress-bar {
+            height: 10px;
+            background: var(--border-light);
+            border-radius: 10px;
+            overflow: hidden;
         }
-        
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Enhanced Zara AI */
+        .zara-ai {
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .zara-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .zara-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .zara-chat {
+            height: 400px;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: var(--bg-secondary);
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            line-height: 1.5;
+            animation: messageAppear 0.3s ease;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: var(--bg-card);
+            border-bottom-left-radius: 5px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--gradient-primary);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .zara-input {
+            display: flex;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-card);
             gap: 1rem;
         }
-        
-        .achievement-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
+
+        /* Achievement Badges */
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
-        
-        .achievement-badge {
+
+        .badge {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            border-radius: 15px;
+            background: var(--bg-secondary);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .badge.earned {
+            border-color: var(--success);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-md);
+        }
+
+        .badge-icon {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            margin: 0 auto 0.5rem;
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             color: white;
         }
-        
-        .achievement-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+
+        /* Animations */
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .achievement-count {
-            font-size: 0.8rem;
-            color: #64748b;
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
             }
             
             .sidebar {
-                display: none;
+                transform: translateX(-100%);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
             }
             
             .dashboard-cards, .training-modules {
                 grid-template-columns: 1fr;
-            }
-            
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .user-info {
-                margin-top: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar -->
+        <!-- Enhanced Sidebar -->
         <aside class="sidebar">
             <div class="logo">
                 <h1>DefendIQ Enterprise</h1>
             </div>
+            
             <ul class="nav-links">
-                <li><a href="#" class="active"><i>🏠</i> Dashboard</a></li>
-                <li><a href="#"><i>📚</i> Training Modules</a></li>
-                <li><a href="#"><i>🏆</i> Achievements</a></li>
-                <li><a href="#"><i>👥</i> Team Management</a></li>
-                <li><a href="#"><i>📊</i> Analytics</a></li>
-                <li><a href="#"><i>⚙️</i> Settings</a></li>
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-graduation-cap"></i> Training</a></li>
+                <li><a href="#"><i class="fas fa-trophy"></i> Achievements</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Team</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
+
+            <div class="user-profile">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 1rem;">JD</div>
+                    <div>
+                        <div style="font-weight: 600;">John Doe</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Security Manager</div>
+                    </div>
+                </div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <div class="stat-value">1,250</div>
+                        <div class="stat-label">Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Badges</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Certs</div>
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Enhanced Header -->
             <div class="header">
-                <h2>Security Training Dashboard</h2>
-                <div class="user-info">
-                    <div class="user-avatar">JD</div>
-                    <div>
-                        <div class="user-name">John Doe</div>
-                        <div class="user-role">Security Manager</div>
+                <h2>Security Training Analytics</h2>
+                <div class="header-actions">
+                    <div class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div style="display: flex; align-items: center; background: var(--bg-card); padding: 0.75rem 1.5rem; border-radius: 15px; border: 1px solid var(--border-light);">
+                        <i class="fas fa-coins" style="color: var(--points-gold); margin-right: 0.5rem;"></i>
+                        <span style="font-weight: 600;">1,250</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Dashboard Cards -->
+            <!-- Enhanced Dashboard Cards -->
             <div class="dashboard-cards">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">Team Progress</div>
-                        <div class="card-icon blue"><i>📈</i></div>
+                        <div class="card-icon" style="background: var(--gradient-primary);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
                     </div>
-                    <div class="card-value">78%</div>
-                    <div class="card-description">Average completion across all modules</div>
+                    <div class="card-value">87%</div>
+                    <div style="color: var(--text-muted);">+5% from last month</div>
                 </div>
+                
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">Certificates Issued</div>
-                        <div class="card-icon green"><i>🏆</i></div>
+                        <div class="card-icon" style="background: var(--gradient-success);">
+                            <i class="fas fa-trophy"></i>
+                        </div>
                     </div>
-                    <div class="card-value">142</div>
-                    <div class="card-description">Total certifications achieved</div>
+                    <div class="card-value">156</div>
+                    <div style="color: var(--text-muted);">+24 this month</div>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Active Learners</div>
-                        <div class="card-icon orange"><i>👥</i></div>
-                    </div>
-                    <div class="card-value">24</div>
-                    <div class="card-description">Currently engaged in training</div>
-                </div>
+                
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">Risk Score</div>
-                        <div class="card-icon red"><i>⚠️</i></div>
+                        <div class="card-icon" style="background: var(--gradient-danger);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
                     </div>
                     <div class="card-value">Low</div>
-                    <div class="card-description">Based on completion rates</div>
+                    <div style="color: var(--text-muted);">Excellent security posture</div>
                 </div>
             </div>
 
-            <!-- Management Dashboard -->
-            <div class="management-dashboard">
-                <div class="dashboard-header">
-                    <div class="dashboard-title">Team Achievement Overview</div>
-                    <button class="btn btn-primary">Export Report</button>
-                </div>
-                
-                <div class="team-stats">
-                    <div class="stat-card">
-                        <div class="stat-value">87%</div>
-                        <div class="stat-label">Overall Completion</div>
+            <!-- Analytics Grid -->
+            <div class="analytics-grid">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <div class="chart-title">Training Completion Trends</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-value">24</div>
-                        <div class="stat-label">Team Members</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">142</div>
-                        <div class="stat-label">Certificates</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">4.2/5</div>
-                        <div class="stat-label">Average Score</div>
+                    <div style="height: 300px; background: var(--bg-secondary); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                        Interactive Chart Area
                     </div>
                 </div>
                 
-                <h3 style="margin-bottom: 1rem;">Achievement Distribution</h3>
-                <div class="achievement-grid">
-                    <div class="achievement-card">
-                        <div class="achievement-badge badge-platinum">P</div>
-                        <div class="achievement-title">Platinum</div>
-                        <div class="achievement-count">18 Certificates</div>
+                <div class="leaderboard">
+                    <div class="chart-header">
+                        <div class="chart-title">Top Performers</div>
                     </div>
-                    <div class="achievement-card">
-                        <div class="achievement-badge badge-gold">G</div>
-                        <div class="achievement-title">Gold</div>
-                        <div class="achievement-count">42 Certificates</div>
-                    </div>
-                    <div class="achievement-card">
-                        <div class="achievement-badge badge-silver">S</div>
-                        <div class="achievement-title">Silver</div>
-                        <div class="achievement-count">56 Certificates</div>
-                    </div>
-                    <div class="achievement-card">
-                        <div class="achievement-badge badge-bronze">B</div>
-                        <div class="achievement-title">Bronze</div>
-                        <div class="achievement-count">26 Certificates</div>
+                    <div class="leaderboard-list">
+                        <div class="leaderboard-item">
+                            <div class="rank rank-1">1</div>
+                            <div>
+                                <div style="font-weight: 600;">Sarah Chen</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,850 points</div>
+                            </div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="rank rank-2">2</div>
+                            <div>
+                                <div style="font-weight: 600;">Mike Rodriguez</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,720 points</div>
+                            </div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="rank rank-3">3</div>
+                            <div>
+                                <div style="font-weight: 600;">Emily Watson</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,680 points</div>
+                            </div>
+                        </div>
+                        <div class="leaderboard-item">
+                            <div class="rank rank-4">4</div>
+                            <div>
+                                <div style="font-weight: 600;">You</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,250 points</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Training Modules -->
-            <h2 style="margin-bottom: 1rem;">Security Training Modules</h2>
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700;">Security Training Modules</h3>
             <div class="training-modules">
-                <div class="module-card">
-                    <div class="module-header network">
-                        <div class="module-title">Network Security</div>
-                        <div class="module-description">Protect your network infrastructure from threats</div>
-                    </div>
-                    <div class="module-content">
-                        <div class="module-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill network" style="width: 75%"></div>
-                            </div>
-                            <div style="font-size: 0.8rem; margin-top: 0.25rem;">75% Complete</div>
-                        </div>
-                        <div class="module-actions">
-                            <button class="btn btn-outline">Resume</button>
-                            <button class="btn btn-primary take-quiz" data-module="network">Take Quiz</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="module-card">
-                    <div class="module-header phishing">
-                        <div class="module-title">Phishing Awareness</div>
-                        <div class="module-description">Identify and avoid phishing attempts</div>
-                    </div>
-                    <div class="module-content">
-                        <div class="module-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill phishing" style="width: 90%"></div>
-                            </div>
-                            <div style="font-size: 0.8rem; margin-top: 0.25rem;">90% Complete</div>
-                        </div>
-                        <div class="module-actions">
-                            <button class="btn btn-outline">Review</button>
-                            <button class="btn btn-primary take-quiz" data-module="phishing">Take Quiz</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="module-card">
-                    <div class="module-header password">
-                        <div class="module-title">Password Security</div>
-                        <div class="module-description">Create and manage secure passwords</div>
-                    </div>
-                    <div class="module-content">
-                        <div class="module-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill password" style="width: 60%"></div>
-                            </div>
-                            <div style="font-size: 0.8rem; margin-top: 0.25rem;">60% Complete</div>
-                        </div>
-                        <div class="module-actions">
-                            <button class="btn btn-outline">Resume</button>
-                            <button class="btn btn-primary take-quiz" data-module="password">Take Quiz</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="module-card">
-                    <div class="module-header data">
-                        <div class="module-title">Data Protection</div>
-                        <div class="module-description">Secure sensitive data and prevent breaches</div>
-                    </div>
-                    <div class="module-content">
-                        <div class="module-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill data" style="width: 45%"></div>
-                            </div>
-                            <div style="font-size: 0.8rem; margin-top: 0.25rem;">45% Complete</div>
-                        </div>
-                        <div class="module-actions">
-                            <button class="btn btn-outline">Start</button>
-                            <button class="btn btn-primary take-quiz" data-module="data">Take Quiz</button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Module cards would go here -->
             </div>
 
-            <!-- Zara AI Assistant -->
+            <!-- Enhanced Zara AI -->
             <div class="zara-ai">
                 <div class="zara-header">
-                    <div class="zara-avatar">Z</div>
+                    <div class="zara-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
                     <div>
-                        <div class="zara-title">Zara AI Assistant</div>
-                        <div class="zara-status">Online - Ready to help with your training</div>
+                        <div style="font-size: 1.2rem; font-weight: 600;">Zara AI Assistant</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Ready to help with your security training</div>
                     </div>
                 </div>
                 <div class="zara-chat" id="chat-messages">
                     <div class="message ai">
-                        Hello! I'm Zara, your AI training assistant. I can help you with security training modules, answer questions, and celebrate your achievements!
+                        <strong>Zara:</strong> Welcome back, John! I see you've made great progress on the Phishing Awareness module. Ready to continue your training journey?
                     </div>
                     <div class="message ai">
-                        Which module would you like to work on today?
+                        <strong>Zara:</strong> Based on your team's performance, I recommend focusing on Data Protection next. Your team has a 92% completion rate so far!
                     </div>
                 </div>
                 <div class="zara-input">
-                    <input type="text" id="user-input" placeholder="Type your message here...">
-                    <button id="send-btn"><i>➤</i></button>
+                    <input type="text" placeholder="Ask Zara about training, achievements, or security..." style="flex: 1; padding: 1rem; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-primary); color: var(--text-primary);">
+                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Certificate Modal -->
-    <div class="modal" id="certificate-modal">
-        <div class="modal-content">
-            <div class="certificate network" id="certificate-content">
-                <div class="certificate-badge badge-gold" id="certificate-badge">
-                    <i>🏆</i>
-                </div>
-                <h1 class="certificate-title" id="certificate-title">Certificate of Completion</h1>
-                <p class="certificate-subtitle">This certifies that</p>
-                
-                <div class="certificate-details">
-                    <h2 class="certificate-name" id="certificate-name">John Doe</h2>
-                    <h3 class="certificate-module" id="certificate-module">Network Security</h3>
-                    <p class="certificate-score" id="certificate-score">has successfully completed the training with a score of 92%</p>
-                </div>
-                
-                <div class="certificate-qr">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem;">QR</div>
-                        <div style="font-size: 0.7rem;">CODE</div>
-                    </div>
-                </div>
-                
-                <div class="certificate-footer">
-                    <p>Issued on <span id="certificate-date">October 15, 2023</span></p>
-                    <p>Certificate ID: <span id="certificate-id">DEF-IQ-NS-2023-0015</span></p>
-                </div>
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-outline" id="close-certificate">Close</button>
-                <button class="btn btn-primary" id="share-certificate">Share</button>
-                <button class="btn btn-primary" id="print-certificate">Print</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Certificate generation and display
-        document.querySelectorAll('.take-quiz').forEach(button => {
-            button.addEventListener('click', function() {
-                const module = this.getAttribute('data-module');
-                generateCertificate(module);
-            });
-        });
-
-        // Close certificate modal
-        document.getElementById('close-certificate').addEventListener('click', function() {
-            document.getElementById('certificate-modal').classList.remove('active');
-        });
-
-        // Zara AI Chat functionality
-        document.getElementById('send-btn').addEventListener('click', sendMessage);
-        document.getElementById('user-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
+        // Theme Toggle Functionality
+        document.querySelector('.theme-toggle').addEventListener('click', function() {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('defendiq-theme', 'light');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('defendiq-theme', 'dark');
             }
         });
 
+        // Initialize theme
+        const savedTheme = localStorage.getItem('defendiq-theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+        }
+
+        // Enhanced Zara AI Chat
+        document.querySelector('.zara-input button').addEventListener('click', sendMessage);
+        document.querySelector('.zara-input input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+
         function sendMessage() {
-            const userInput = document.getElementById('user-input');
-            const message = userInput.value.trim();
+            const input = document.querySelector('.zara-input input');
+            const message = input.value.trim();
             
             if (message) {
-                // Add user message to chat
                 addMessage(message, 'user');
+                input.value = '';
                 
-                // Clear input
-                userInput.value = '';
-                
-                // Generate AI response
+                // Simulate AI response
                 setTimeout(() => {
-                    generateAIResponse(message);
+                    const responses = [
+                        "Great question! Based on your progress, I'd recommend focusing on the advanced modules next.",
+                        "I can help you with that! Your team's current completion rate is 87%, which is excellent.",
+                        "That's an important security topic. Let me pull up the relevant training materials for you.",
+                        "I notice you've been making great progress! Would you like to set new training goals?",
+                        "Based on analytics, your team excels in phishing detection but could improve in data encryption practices."
+                    ];
+                    const response = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(`<strong>Zara:</strong> ${response}`, 'ai');
                 }, 1000);
             }
         }
 
         function addMessage(text, sender) {
-            const chatMessages = document.getElementById('chat-messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', sender);
-            messageDiv.textContent = text;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            const chat = document.getElementById('chat-messages');
+            const message = document.createElement('div');
+            message.className = `message ${sender}`;
+            message.innerHTML = text;
+            chat.appendChild(message);
+            chat.scrollTop = chat.scrollHeight;
         }
 
-        function generateAIResponse(userMessage) {
-            let response = "I'm here to help with your security training. Which module are you working on?";
-            
-            if (userMessage.toLowerCase().includes('network')) {
-                response = "Network Security focuses on protecting your network infrastructure. Would you like to take the quiz for this module?";
-            } else if (userMessage.toLowerCase().includes('phishing')) {
-                response = "Phishing Awareness teaches you how to identify and avoid phishing attempts. Ready to test your knowledge?";
-            } else if (userMessage.toLowerCase().includes('password')) {
-                response = "Password Security covers creating and managing secure passwords. I can help you prepare for the quiz!";
-            } else if (userMessage.toLowerCase().includes('data')) {
-                response = "Data Protection is about securing sensitive information. Let me know if you need help with this module.";
-            } else if (userMessage.toLowerCase().includes('certificate') || userMessage.toLowerCase().includes('achievement')) {
-                response = "You've earned 3 certificates so far! Your highest achievement is Gold in Phishing Awareness. Keep up the great work!";
-            } else if (userMessage.toLowerCase().includes('help')) {
-                response = "I can help you with: module information, quiz preparation, achievement tracking, and answering security questions. What do you need?";
-            }
-            
-            addMessage(response, 'ai');
-        }
-
-        function generateCertificate(module) {
-            // Set module-specific certificate design
-            const certificateContent = document.getElementById('certificate-content');
-            certificateContent.className = 'certificate ' + module;
-            
-            // Set module name
-            const moduleNames = {
-                'network': 'Network Security',
-                'phishing': 'Phishing Awareness', 
-                'password': 'Password Security',
-                'data': 'Data Protection'
-            };
-            document.getElementById('certificate-module').textContent = moduleNames[module];
-            
-            // Generate random score and determine tier
-            const score = Math.floor(Math.random() * 31) + 70; // Score between 70-100
-            document.getElementById('certificate-score').textContent = `has successfully completed the training with a score of ${score}%`;
-            
-            // Set badge based on score
-            const badge = document.getElementById('certificate-badge');
-            badge.className = 'certificate-badge ';
-            
-            if (score >= 100) {
-                badge.classList.add('badge-platinum');
-                badge.innerHTML = '<i>🏆</i>';
-                document.getElementById('certificate-title').textContent = 'Platinum Certificate';
-            } else if (score >= 90) {
-                badge.classList.add('badge-gold');
-                badge.innerHTML = '<i>🥇</i>';
-                document.getElementById('certificate-title').textContent = 'Gold Certificate';
-            } else if (score >= 80) {
-                badge.classList.add('badge-silver');
-                badge.innerHTML = '<i>🥈</i>';
-                document.getElementById('certificate-title').textContent = 'Silver Certificate';
-            } else {
-                badge.classList.add('badge-bronze');
-                badge.innerHTML = '<i>🥉</i>';
-                document.getElementById('certificate-title').textContent = 'Bronze Certificate';
-            }
-            
-            // Set current date
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('certificate-date').textContent = now.toLocaleDateString('en-US', options);
-            
-            // Generate certificate ID
-            const moduleCodes = {
-                'network': 'NS',
-                'phishing': 'PA', 
-                'password': 'PS',
-                'data': 'DP'
-            };
-            const id = `DEF-IQ-${moduleCodes[module]}-${now.getFullYear()}-${String(now.getDate()).padStart(4, '0')}`;
-            document.getElementById('certificate-id').textContent = id;
-            
-            // Show certificate modal
-            document.getElementById('certificate-modal').classList.add('active');
-            
-            // Add Zara AI celebration message based on score
+        // Simulate progress animations
+        document.querySelectorAll('.progress-fill').forEach(progress => {
+            const width = progress.style.width;
+            progress.style.width = '0%';
             setTimeout(() => {
-                let celebration = "";
-                if (score >= 100) {
-                    celebration = "Outstanding! You've achieved a perfect score and earned the Platinum certificate! You're a security expert!";
-                } else if (score >= 90) {
-                    celebration = "Excellent work! You've earned a Gold certificate with your high score. You're mastering these security concepts!";
-                } else if (score >= 80) {
-                    celebration = "Great job! You've achieved a Silver certificate. You're well on your way to becoming a security pro!";
-                } else {
-                    celebration = "Good effort! You've earned a Bronze certificate. Keep practicing to improve your score in the next attempt!";
-                }
-                
-                addMessage(celebration, 'ai');
+                progress.style.width = width;
             }, 500);
-        }
-
-        // Print certificate functionality
-        document.getElementById('print-certificate').addEventListener('click', function() {
-            window.print();
         });
 
-        // Share certificate functionality (simulated)
-        document.getElementById('share-certificate').addEventListener('click', function() {
-            alert('Certificate shared to your connected platforms!');
-        });
+        // Add pulse animation to important elements
+        document.querySelector('.card-icon').classList.add('pulse');
     </script>
 </body>
 </html>
