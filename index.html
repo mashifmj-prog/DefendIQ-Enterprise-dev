@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DefendIQ Enterprise - Cybersecurity Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <section id="landingPage" class="landing-page">
+        <div class="landing-container">
+            <div class="logo">🛡️</div>
+            <h1 class="title">DefendIQ Enterprise</h1>
+            <p class="slogan">Defend with Confidence, Grow with Ease!</p>
+            <div class="landing-stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Departments</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">52</div>
+                    <div class="stat-label">Training Modules</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">94%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+            <button id="enterPlatform" class="btn btn-primary btn-large">Enter Enterprise Platform</button>
+            <div class="landing-features">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>AI-Powered Learning</h3>
+                    <p>Meet Zara - your 24/7 cybersecurity mentor and life coach</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Smart Strategy</h3>
+                    <p>Personalized training paths based on your role and skill level</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Track progress and identify knowledge gaps instantly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Department Selection Overlay -->
+    <section id="departmentSelection" class="overlay">
+        <div class="overlay-content">
+            <div class="logo">🛡️</div>
+            <h1>DefendIQ Enterprise</h1>
+            <p class="subtitle">Select Your Department</p>
+            <div class="department-cards">
+                <div class="department-card" data-department="nms">
+                    <div class="card-icon">🚀</div>
+                    <h3>Network & Systems</h3>
+                    <p>Network security, system administration, infrastructure protection</p>
+                    <div class="card-stats">
+                        <span>12 Modules</span>
+                        <span>Advanced</span>
+                    </div>
+                </div>
+                <div class="department-card" data-department="hr">
+                    <div class="card-icon">👥</div>
+                    <h3>Human Resources</h3>
+                    <p>Employee data protection, compliance, policy implementation</p>
+                    <div class="card-stats">
+                        <span>8 Modules</span>
+                        <span>Intermediate</span>
+                    </div>
+                </div>
+                <div class="department-card" data-department="it">
+                    <div class="card-icon">💻</div>
+                    <h3>IT Support</h3>
+                    <p>Endpoint security, access management, incident response</p>
+                    <div class="card-stats">
+                        <span>15 Modules</span>
+                        <span>Advanced</span>
+                    </div>
+                </div>
+                <div class="department-card" data-department="finance">
+                    <div class="card-icon">💰</div>
+                    <h3>Finance</h3>
+                    <p>Financial data security, fraud prevention, transaction safety</p>
+                    <div class="card-stats">
+                        <span>10 Modules</span>
+                        <span>Intermediate</span>
+                    </div>
+                </div>
+                <div class="department-card" data-department="customer-service">
+                    <div class="card-icon">📞</div>
+                    <h3>Customer Service</h3>
+                    <p>Customer data protection, social engineering prevention</p>
+                    <div class="card-stats">
+                        <span>7 Modules</span>
+                        <span>Beginner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Application Container -->
+    <section id="appContainer" class="app-container">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-brand">
+                <div class="nav-logo">🛡️</div>
+                <div>DefendIQ Enterprise</div>
+                <div id="currentDepartment" class="department-badge">Network & Systems</div>
+            </div>
+            <div class="nav-controls">
+                <button id="backToDepartments" class="nav-btn">Change Department</button>
+                <button id="supportModeBtn" class="nav-btn">Zara AI Support</button>
+            </div>
+        </nav>
+
+        <!-- Training Mode -->
+        <section id="trainingMode" class="app-section">
+            <div class="dashboard">
+                <div class="department-header">
+                    <h1 id="departmentTitle">Network & Systems Security</h1>
+                    <p>Master cybersecurity fundamentals for network infrastructure and systems administration</p>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-label">Training Progress</div>
+                        <div class="stat-value">42%</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 42%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Modules Completed</div>
+                        <div class="stat-value">5/12</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 41.67%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Average Score</div>
+                        <div class="stat-value">87%</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 87%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Time Spent</div>
+                        <div class="stat-value">14h 22m</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-grid">
+                    <!-- Module cards will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Mode -->
+        <section id="supportMode" class="app-section">
+            <div class="support-container">
+                <div class="support-header">
+                    <div class="zara-profile">
+                        <div class="zara-avatar">🤖</div>
+                        <div class="zara-info">
+                            <h2>Zara - Your AI Mentor</h2>
+                            <p>24/7 Cybersecurity Mentor & Life Coach</p>
+                        </div>
+                    </div>
+                    <div class="support-status">
+                        <div class="status-dot online"></div>
+                        <span>Online & Ready to Help</span>
+                    </div>
+                    <div class="support-features">
+                        <span class="feature-tag">Cybersecurity Expert</span>
+                        <span class="feature-tag">Emotional Intelligence</span>
+                        <span class="feature-tag">Crisis Detection</span>
+                        <span class="feature-tag">24/7 Support</span>
+                        <span class="feature-tag">Cultural Awareness</span>
+                    </div>
+                </div>
+
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <div class="message ai-message">
+                            <div class="message-sender">Zara</div>
+                            <p>Hello! I'm Zara, your cybersecurity mentor and life coach. I'm here to help you with any cybersecurity questions, provide guidance on training modules, or just chat about your day. How can I assist you today?</p>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <textarea id="chatInput" class="chat-input" placeholder="Ask Zara anything about cybersecurity, your training, or just say hello..."></textarea>
+                        <button id="sendMessage" class="send-btn">Send</button>
+                    </div>
+                    <div class="chat-suggestions">
+                        <button class="suggestion-btn">Explain phishing attacks</button>
+                        <button class="suggestion-btn">Help with current module</button>
+                        <button class="suggestion-btn">I'm feeling stressed</button>
+                        <button class="suggestion-btn">Tell me a cybersecurity joke</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mode Selector -->
+        <div class="mode-selector">
+            <button id="trainingTab" class="mode-tab active">Training Modules</button>
+            <button id="supportTab" class="mode-tab">Zara AI Support</button>
+        </div>
+    </section>
+
+    <script>
+        // ===== DEFENDIQ ENTERPRISE - ENHANCED APPLICATION LOGIC =====
+        
+        // DOM Elements
+        const landingPage = document.getElementById('landingPage');
+        const departmentSelection = document.getElementById('departmentSelection');
+        const appContainer = document.getElementById('appContainer');
+        const enterPlatformBtn = document.getElementById('enterPlatform');
+        const departmentCards = document.querySelectorAll('.department-card');
+        const backToDepartmentsBtn = document.getElementById('backToDepartments');
+        const supportModeBtn = document.getElementById('supportModeBtn');
+        const trainingTab = document.getElementById('trainingTab');
+        const supportTab = document.getElementById('supportTab');
+        const trainingMode = document.getElementById('trainingMode');
+        const supportMode = document.getElementById('supportMode');
+        const departmentTitle = document.getElementById('departmentTitle');
+        const currentDepartment = document.getElementById('currentDepartment');
+        const moduleGrid = document.querySelector('.module-grid');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessageBtn = document.getElementById('sendMessage');
+        const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+
+        // Department Data
+        const departments = {
+            nms: {
+                name: "Network & Systems",
+                title: "Network & Systems Security",
+                modules: [
+                    {
+                        id: 1,
+                        title: "Network Security Fundamentals",
+                        description: "Learn the core principles of securing network infrastructure and preventing unauthorized access.",
+                        icon: "🔒",
+                        duration: "45 min",
+                        level: "Beginner",
+                        progress: 100,
+                        status: "completed"
+                    },
+                    {
+                        id: 2,
+                        title: "Firewall Configuration & Management",
+                        description: "Master firewall setup, rule creation, and ongoing management for optimal network protection.",
+                        icon: "🔥",
+                        duration: "60 min",
+                        level: "Intermediate",
+                        progress: 75,
+                        status: "in-progress"
+                    },
+                    {
+                        id: 3,
+                        title: "Intrusion Detection Systems",
+                        description: "Understand how to implement and monitor IDS to detect potential security breaches.",
+                        icon: "🚨",
+                        duration: "50 min",
+                        level: "Advanced",
+                        progress: 0,
+                        status: "not-started"
+                    },
+                    {
+                        id: 4,
+                        title: "VPN & Remote Access Security",
+                        description: "Secure remote connections and implement VPN solutions for distributed teams.",
+                        icon: "🌐",
+                        duration: "55 min",
+                        level: "Intermediate",
+                        progress: 0,
+                        status: "not-started"
+                    },
+                    {
+                        id: 5,
+                        title: "Wireless Network Security",
+                        description: "Protect Wi-Fi networks from common vulnerabilities and attacks.",
+                        icon: "📶",
+                        duration: "40 min",
+                        level: "Intermediate",
+                        progress: 0,
+                        status: "not-started"
+                    },
+                    {
+                        id: 6,
+                        title: "Network Monitoring & SIEM",
+                        description: "Implement security monitoring and leverage SIEM tools for threat detection.",
+                        icon: "📊",
+                        duration: "70 min",
+                        level: "Advanced",
+                        progress: 0,
+                        status: "not-started"
+                    }
+                ]
+            },
+            hr: {
+                name: "Human Resources",
+                title: "HR Data Protection & Compliance",
+                modules: [
+                    {
+                        id: 1,
+                        title: "Employee Data Privacy",
+                        description: "Understand GDPR and other regulations for handling employee personal information.",
+                        icon: "👤",
+                        duration: "35 min",
+                        level: "Beginner",
+                        progress: 100,
+                        status: "completed"
+                    },
+                    {
+                        id: 2,
+                        title: "Social Engineering Defense",
+                        description: "Recognize and prevent social engineering attacks targeting HR personnel.",
+                        icon: "🎭",
+                        duration: "45 min",
+                        level: "Intermediate",
+                        progress: 50,
+                        status: "in-progress"
+                    }
+                ]
+            },
+            it: {
+                name: "IT Support",
+                title: "IT Security & Endpoint Protection",
+                modules: [
+                    {
+                        id: 1,
+                        title: "Endpoint Security Fundamentals",
+                        description: "Learn to secure laptops, desktops, and mobile devices from cyber threats.",
+                        icon: "💻",
+                        duration: "40 min",
+                        level: "Beginner",
+                        progress: 100,
+                        status: "completed"
+                    },
+                    {
+                        id: 2,
+                        title: "Incident Response Procedures",
+                        description: "Master the steps to take when a security incident occurs.",
+                        icon: "🚨",
+                        duration: "55 min",
+                        level: "Intermediate",
+                        progress: 25,
+                        status: "in-progress"
+                    }
+                ]
+            },
+            finance: {
+                name: "Finance",
+                title: "Financial Data Security & Fraud Prevention",
+                modules: [
+                    {
+                        id: 1,
+                        title: "Financial Data Protection",
+                        description: "Secure sensitive financial information and prevent data breaches.",
+                        icon: "💰",
+                        duration: "50 min",
+                        level: "Beginner",
+                        progress: 100,
+                        status: "completed"
+                    },
+                    {
+                        id: 2,
+                        title: "Fraud Detection & Prevention",
+                        description: "Identify and prevent financial fraud through cybersecurity measures.",
+                        icon: "🕵️",
+                        duration: "60 min",
+                        level: "Intermediate",
+                        progress: 0,
+                        status: "not-started"
+                    }
+                ]
+            },
+            "customer-service": {
+                name: "Customer Service",
+                title: "Customer Data Protection & Social Engineering",
+                modules: [
+                    {
+                        id: 1,
+                        title: "Customer Data Privacy",
+                        description: "Protect customer information in accordance with privacy regulations.",
+                        icon: "📞",
+                        duration: "30 min",
+                        level: "Beginner",
+                        progress: 100,
+                        status: "completed"
+                    },
+                    {
+                        id: 2,
+                        title: "Social Engineering Recognition",
+                        description: "Identify and respond to social engineering attempts targeting customer service.",
+                        icon: "🎭",
+                        duration: "40 min",
+                        level: "Beginner",
+                        progress: 0,
+                        status: "not-started"
+                    }
+                ]
+            }
+        };
+
+        // Enhanced Zara AI with Time-Based Personality
+        const zaraAI = {
+            getTimeBasedPersonality() {
+                const hour = new Date().getHours();
+                const day = new Date().getDay();
+                const isWeekend = day === 0 || day === 6;
+                
+                if (isWeekend) return 'weekend';
+                if (hour >= 22 || hour < 6) return 'late_night';
+                if (hour >= 18) return 'evening';
+                if (hour >= 12) return 'afternoon';
+                return 'morning';
+            },
+
+            personalities: {
+                morning: {
+                    greeting: "Good morning! Ready to secure your digital world today? ☀️",
+                    tone: "energetic",
+                    humor: "professional",
+                    focus: "productivity"
+                },
+                afternoon: {
+                    greeting: "Good afternoon! How's your cybersecurity journey going? 🌞",
+                    tone: "friendly", 
+                    humor: "playful",
+                    focus: "momentum"
+                },
+                evening: {
+                    greeting: "Evening! Time to reinforce those security skills! 🌇",
+                    tone: "relaxed",
+                    humor: "chill",
+                    focus: "reinforcement"
+                },
+                late_night: {
+                    greeting: "Late night security session? I admire your dedication! 🌙",
+                    tone: "gentle",
+                    humor: "subtle",
+                    focus: "support"
+                },
+                weekend: {
+                    greeting: "Weekend learning! Your commitment is inspiring! 🎉",
+                    tone: "casual",
+                    humor: "lighthearted", 
+                    focus: "enjoyment"
+                }
+            },
+
+            generateResponse(userMessage) {
+                const personality = this.getTimeBasedPersonality();
+                const lowerMessage = userMessage.toLowerCase();
+                
+                // Enhanced response system
+                if (lowerMessage.includes('phishing') || lowerMessage.includes('email')) {
+                    return this.getPhishingResponse(personality);
+                } else if (lowerMessage.includes('password') || lowerMessage.includes('login')) {
+                    return this.getPasswordResponse(personality);
+                } else if (lowerMessage.includes('virus') || lowerMessage.includes('malware')) {
+                    return this.getMalwareResponse(personality);
+                } else if (lowerMessage.includes('social engineering')) {
+                    return this.getSocialEngineeringResponse(personality);
+                } else if (lowerMessage.includes('module') || lowerMessage.includes('training')) {
+                    return this.getTrainingResponse(personality);
+                } else if (lowerMessage.includes('stress') || lowerMessage.includes('overwhelm')) {
+                    return this.getSupportResponse(personality);
+                } else if (lowerMessage.includes('joke') || lowerMessage.includes('funny')) {
+                    return this.getHumorResponse(personality);
+                } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                    return this.personalities[personality].greeting;
+                } else {
+                    return this.getGeneralResponse(personality);
+                }
+            },
+
+            getPhishingResponse(personality) {
+                const responses = {
+                    morning: "Phishing attacks often target morning emails when people are catching up. Remember to check sender addresses carefully and never click suspicious links! 🎣",
+                    afternoon: "Afternoon phishing attempts prey on post-lunch fatigue. Always verify unexpected requests, especially for sensitive information! 📧",
+                    evening: "Evening phishing might exploit end-of-day urgency. Take your time with emails requesting immediate action! ⏰",
+                    late_night: "Late-night phishing can be sophisticated. Remember: legitimate companies rarely need urgent action outside business hours! 🌙",
+                    weekend: "Weekend phishing attacks count on relaxed vigilance. Stay alert even during downtime! 🛡️"
+                };
+                return responses[personality];
+            },
+
+            getPasswordResponse(personality) {
+                const tips = [
+                    "Use passphrases instead of passwords: 'PurpleTiger$JumpsHigh!' is better than 'P@ssw0rd'",
+                    "Enable two-factor authentication wherever possible",
+                    "Use a password manager to generate and store strong passwords",
+                    "Never reuse passwords across different services"
+                ];
+                return `${this.personalities[personality].greeting.split('!')[0]}! For strong passwords: ${tips[Math.floor(Math.random() * tips.length)]}`;
+            },
+            
+            getMalwareResponse(personality) {
+                const tips = {
+                    morning: "Morning is a good time to run malware scans when systems are less busy. Remember to keep antivirus software updated! 🛡️",
+                    afternoon: "Afternoon malware attacks often come through email attachments. Never open attachments from unknown senders! 📎",
+                    evening: "Evening is when many malware attacks occur. Ensure your systems have proper endpoint protection! 💻",
+                    late_night: "Late-night malware can be particularly dangerous. Make sure automatic updates are enabled! 🌙",
+                    weekend: "Weekend malware relies on reduced IT support. Stay vigilant with your security practices! 🎯"
+                };
+                return tips[personality];
+            },
+            
+            getSocialEngineeringResponse(personality) {
+                const tips = {
+                    morning: "Morning social engineering often uses urgency tactics. Verify all unusual requests through secondary channels! 📞",
+                    afternoon: "Afternoon social engineering preys on fatigue. Be extra cautious with requests for sensitive information! 🔒",
+                    evening: "Evening social engineering might impersonate executives. Always confirm authority before taking action! 👔",
+                    late_night: "Late-night social engineering uses isolation. Remember you can always say 'I'll check this tomorrow'! 🌙",
+                    weekend: "Weekend social engineering exploits relaxed protocols. Stick to established security procedures! 🛡️"
+                };
+                return tips[personality];
+            },
+
+            getTrainingResponse(personality) {
+                const responses = {
+                    morning: "Morning is perfect for learning! Which module are you working on? I can explain concepts or help with difficult topics! 📚",
+                    afternoon: "Afternoon learning can be very effective! What specific cybersecurity topic would you like to explore? 💡",
+                    evening: "Evening is great for reinforcing knowledge! Tell me what you're studying and I'll help clarify any questions! 🌙",
+                    late_night: "Late-night study sessions show dedication! I'm here to help you understand any cybersecurity concepts! 💪",
+                    weekend: "Weekend learning is above and beyond! What cybersecurity skill would you like to develop today? 🎯"
+                };
+                return responses[personality];
+            },
+
+            getHumorResponse(personality) {
+                const jokes = {
+                    morning: "Why do hackers wear gloves? Because they don't want to leave fingerprints! 😄",
+                    afternoon: "What's a cyber criminal's favorite season? Phishing season! 🎣", 
+                    evening: "Why was the computer cold? It left its Windows open! ❄️",
+                    late_night: "How many programmers does it take to change a lightbulb? None, it's a hardware problem! 💡",
+                    weekend: "Why did the cybersecurity expert break up with the password? It was too weak! 💔"
+                };
+                return jokes[personality];
+            },
+
+            getSupportResponse(personality) {
+                const supportMessages = {
+                    morning: "Starting the day with cybersecurity can feel overwhelming. Remember: every expert was once a beginner. You're building crucial skills! 💪",
+                    afternoon: "Afternoon energy dip? How about a 5-minute break, then tackle one small concept at a time? You've got this! ☕",
+                    evening: "Evening learning shows real dedication. Remember to balance study with rest - even cybersecurity heroes need downtime! 🌃",
+                    late_night: "Late-night studying is impressive, but don't forget sleep is important for memory consolidation. Your brain will thank you! 😴",
+                    weekend: "Weekend learning is above and beyond! Make sure to schedule some fun too - balance is key to sustainable learning! 🎉"
+                };
+                return supportMessages[personality];
+            },
+
+            getGeneralResponse(personality) {
+                const generalResponses = {
+                    morning: "I'm here to help with cybersecurity questions, training guidance, or just to chat about your learning journey! What would you like to explore today? 🚀",
+                    afternoon: "Ready to continue your cybersecurity education? I can explain concepts, help with modules, or discuss real-world scenarios! 💡",
+                    evening: "Evening is a great time for reflection and reinforcement. What cybersecurity topic interests you right now? 🌙",
+                    late_night: "Late night thoughts often bring clarity. I'm here to discuss cybersecurity concepts or help with any questions you have! 💭",
+                    weekend: "Weekends are perfect for diving deeper into cybersecurity. What would you like to learn or practice today? 🎯"
+                };
+                return generalResponses[personality];
+            }
+        };
+
+        // Module Content System
+        const moduleContent = {
+            1: {
+                title: "Network Security Fundamentals",
+                sections: [
+                    {
+                        title: "Understanding Network Threats",
+                        content: "Network security protects your infrastructure from threats like:<br><br>• <strong>Malware</strong>: Viruses, worms, and ransomware<br>• <strong>DDoS Attacks</strong>: Overwhelming network resources<br>• <strong>Man-in-the-Middle</strong>: Intercepting communications<br>• <strong>Phishing</strong>: Social engineering attacks",
+                        quiz: {
+                            question: "Which attack involves overwhelming network resources?",
+                            options: ["Phishing", "DDoS Attack", "Malware", "Man-in-the-Middle"],
+                            correct: 1
+                        }
+                    },
+                    {
+                        title: "Essential Security Protocols",
+                        content: "Key protocols for network security:<br><br>• <strong>HTTPS</strong>: Encrypted web traffic<br>• <strong>VPN</strong>: Secure remote access<br>• <strong>SSH</strong>: Secure command-line access<br>• <strong>WPA3</strong>: Latest Wi-Fi security",
+                        quiz: {
+                            question: "Which protocol provides encrypted web traffic?",
+                            options: ["SSH", "VPN", "HTTPS", "WPA3"],
+                            correct: 2
+                        }
+                    }
+                ]
+            },
+            2: {
+                title: "Firewall Configuration & Management",
+                sections: [
+                    {
+                        title: "Firewall Basics",
+                        content: "Firewalls act as gatekeepers between your network and the outside world.<br><br>• <strong>Packet Filtering</strong>: Examines packet headers<br>• <strong>Stateful Inspection</strong>: Tracks connection states<br>• <strong>Proxy Service</strong>: Intercepts all messages",
+                        quiz: {
+                            question: "Which firewall method tracks connection states?",
+                            options: ["Packet Filtering", "Proxy Service", "Stateful Inspection", "All of the above"],
+                            correct: 2
+                        }
+                    }
+                ]
+            }
+        };
+
+        // User Progress System
+        const userProgress = {
+            loadProgress() {
+                const saved = localStorage.getItem('defendIQProgress');
+                return saved ? JSON.parse(saved) : this.getDefaultProgress();
+            },
+
+            saveProgress(progress) {
+                localStorage.setItem('defendIQProgress', JSON.stringify(progress));
+            },
+
+            getDefaultProgress() {
+                return {
+                    departments: {
+                        nms: { completed: [1], inProgress: [2], scores: {1: 85} },
+                        hr: { completed: [1], inProgress: [], scores: {1: 90} },
+                        it: { completed: [1], inProgress: [], scores: {1: 88} },
+                        finance: { completed: [1], inProgress: [], scores: {1: 92} },
+                        'customer-service': { completed: [1], inProgress: [], scores: {1: 86} }
+                    },
+                    chatHistory: [],
+                    lastActivity: new Date().toISOString()
+                };
+            },
+
+            updateModuleProgress(departmentId, moduleId, score) {
+                const progress = this.loadProgress();
+                if (!progress.departments[departmentId]) {
+                    progress.departments[departmentId] = { completed: [], inProgress: [], scores: {} };
+                }
+                
+                progress.departments[departmentId].completed.push(moduleId);
+                progress.departments[departmentId].scores[moduleId] = score;
+                
+                // Remove from inProgress if it was there
+                const inProgressIndex = progress.departments[departmentId].inProgress.indexOf(moduleId);
+                if (inProgressIndex > -1) {
+                    progress.departments[departmentId].inProgress.splice(inProgressIndex, 1);
+                }
+                
+                this.saveProgress(progress);
+                return progress;
+            }
+        };
+
+        // Current State
+        let currentDepartmentId = 'nms';
+        let currentMode = 'training';
+        let userData = userProgress.loadProgress();
+
+        // Initialize the application
+        function initApp() {
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Load initial department data
+            loadDepartmentData(currentDepartmentId);
+            
+            console.log("DefendIQ Enterprise initialized successfully");
+        }
+
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Landing page to department selection
+            enterPlatformBtn.addEventListener('click', () => {
+                landingPage.style.display = 'none';
+                departmentSelection.style.display = 'flex';
+            });
+
+            // Department selection
+            departmentCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const departmentId = card.getAttribute('data-department');
+                    selectDepartment(departmentId);
+                });
+            });
+
+            // Navigation controls
+            backToDepartmentsBtn.addEventListener('click', () => {
+                appContainer.style.display = 'none';
+                departmentSelection.style.display = 'flex';
+            });
+
+            supportModeBtn.addEventListener('click', () => {
+                switchMode('support');
+            });
+
+            // Mode tabs
+            trainingTab.addEventListener('click', () => {
+                switchMode('training');
+            });
+
+            supportTab.addEventListener('click', () => {
+                switchMode('support');
+            });
+
+            // Chat functionality
+            sendMessageBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Suggestion buttons
+            suggestionBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const text = btn.textContent;
+                    chatInput.value = text;
+                    sendMessage();
+                });
+            });
+        }
+
+        // Select a department and load its data
+        function selectDepartment(departmentId) {
+            currentDepartmentId = departmentId;
+            departmentSelection.style.display = 'none';
+            appContainer.style.display = 'block';
+            
+            loadDepartmentData(departmentId);
+            switchMode('training');
+        }
+
+        // Load department data and update UI
+        function loadDepartmentData(departmentId) {
+            const department = departments[departmentId];
+            
+            if (!department) {
+                console.error(`Department ${departmentId} not found`);
+                return;
+            }
+            
+            // Update department information
+            departmentTitle.textContent = department.title;
+            currentDepartment.textContent = department.name;
+            
+            // Load modules
+            loadModules(department.modules);
+        }
+
+        // Load modules into the grid
+        function loadModules(modules) {
+            moduleGrid.innerHTML = '';
+            
+            modules.forEach(module => {
+                const moduleCard = document.createElement('div');
+                moduleCard.className = `module-card ${module.status}`;
+                moduleCard.setAttribute('data-module-id', module.id);
+                
+                moduleCard.innerHTML = `
+                    <div class="module-header-card">
+                        <div class="module-icon">${module.icon}</div>
+                        <div>
+                            <h3>${module.title}</h3>
+                            <div class="module-meta">
+                                <span>${module.duration}</span>
+                                <span>${module.level}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="module-description">${module.description}</p>
+                    <div class="module-progress">
+                        <div class="progress-text">
+                            <span>Progress</span>
+                            <span>${module.progress}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${module.progress}%"></div>
+                        </div>
+                    </div>
+                `;
+                
+                moduleCard.addEventListener('click', () => {
+                    openModule(module);
+                });
+                
+                moduleGrid.appendChild(moduleCard);
+            });
+        }
+
+        // Open a module with interactive content
+        function openModule(module) {
+            const content = moduleContent[module.id];
+            
+            if (!content) {
+                alert(`Module content for "${module.title}" is coming soon! 🚀`);
+                return;
+            }
+            
+            // Create module viewer
+            const moduleViewer = document.createElement('div');
+            moduleViewer.className = 'module-viewer';
+            moduleViewer.innerHTML = `
+                <div class="module-header">
+                    <h2>${module.title}</h2>
+                    <button class="close-module">✕</button>
+                </div>
+                <div class="module-sections">
+                    ${content.sections.map((section, index) => `
+                        <div class="section" data-section="${index}">
+                            <h3>${section.title}</h3>
+                            <div class="section-content">${section.content}</div>
+                            <div class="section-quiz">
+                                <h4>Quick Check</h4>
+                                <p>${section.quiz.question}</p>
+                                <div class="quiz-options">
+                                    ${section.quiz.options.map((option, optIndex) => `
+                                        <button class="quiz-option" data-correct="${optIndex === section.quiz.correct}">
+                                            ${option}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Add to page
+            document.body.appendChild(moduleViewer);
+            
+            // Add event listeners
+            moduleViewer.querySelector('.close-module').addEventListener('click', () => {
+                document.body.removeChild(moduleViewer);
+            });
+            
+            // Quiz functionality
+            moduleViewer.querySelectorAll('.quiz-option').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const isCorrect = this.getAttribute('data-correct') === 'true';
+                    const allOptions = this.parentElement.querySelectorAll('.quiz-option');
+                    
+                    // Disable all options after selection
+                    allOptions.forEach(opt => {
+                        opt.style.pointerEvents = 'none';
+                    });
+                    
+                    if (isCorrect) {
+                        this.style.background = 'var(--success)';
+                        this.style.color = 'white';
+                        setTimeout(() => {
+                            alert('Correct! 🎉 Well done!');
+                            // Update progress
+                            userProgress.updateModuleProgress(currentDepartmentId, module.id, 100);
+                        }, 500);
+                    } else {
+                        this.style.background = 'var(--error)';
+                        this.style.color = 'white';
+                        // Show correct answer
+                        allOptions.forEach(opt => {
+                            if (opt.getAttribute('data-correct') === 'true') {
+                                opt.style.background = 'var(--success)';
+                                opt.style.color = 'white';
+                            }
+                        });
+                        setTimeout(() => {
+                            alert('Not quite! The correct answer is highlighted. Let me explain that concept again...');
+                        }, 500);
+                    }
+                });
+            });
+        }
+
+        // Switch between training and support modes
+        function switchMode(mode) {
+            currentMode = mode;
+            
+            // Update tab states
+            trainingTab.classList.toggle('active', mode === 'training');
+            supportTab.classList.toggle('active', mode === 'support');
+            
+            // Show/hide sections
+            trainingMode.style.display = mode === 'training' ? 'block' : 'none';
+            supportMode.style.display = mode === 'support' ? 'block' : 'none';
+        }
+
+        // Send a message in the chat
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to chat
+            addMessageToChat(message, 'user');
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // Save to chat history
+            userData.chatHistory.push({
+                message: message,
+                timestamp: new Date().toISOString(),
+                sender: 'user'
+            });
+            userProgress.saveProgress(userData);
+            
+            // Use enhanced AI response
+            setTimeout(() => {
+                const response = zaraAI.generateResponse(message);
+                addMessageToChat(response, 'ai');
+                
+                // Save AI response to history
+                userData.chatHistory.push({
+                    message: response,
+                    timestamp: new Date().toISOString(),
+                    sender: 'ai'
+                });
+                userProgress.saveProgress(userData);
+            }, 1000);
+        }
+
+        // Add a message to the chat
+        function addMessageToChat(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${sender}-message`;
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageElement.innerHTML = `
+                <div class="message-sender">${sender === 'user' ? 'You' : 'Zara'}</div>
+                <p>${text}</p>
+                <div class="message-time">${timeString}</div>
+            `;
+            
+            chatMessages.appendChild(messageElement);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
