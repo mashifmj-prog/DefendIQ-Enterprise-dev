@@ -8,77 +8,217 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <style>
-        /* Previous CSS remains the same, adding new training-specific styles */
-        
-        /* Training Module Styles */
+        :root {
+            --primary: #2a9d8f;
+            --primary-dark: #1d7874;
+            --secondary: #264653;
+            --accent: #e9c46a;
+            --danger: #e76f51;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #2a9d8f;
+            --warning: #e9c46a;
+            --info: #4cc9f0;
+            --bronze: #cd7f32;
+            --silver: #c0c0c0;
+            --gold: #ffd700;
+            --platinum: #e5e4e2;
+            
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--secondary);
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 1px solid var(--gray);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* FIXED: Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+            padding: 20px 0;
+            min-height: calc(100vh - 80px);
+            align-items: start;
+        }
+
+        /* Training Container */
         .training-container {
             background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
-            border-radius: var(--border-radius-lg);
+            border-radius: var(--border-radius);
             padding: 30px;
-            margin: 20px 0;
-            box-shadow: var(--box-shadow-lg);
+            box-shadow: var(--box-shadow);
             border: 1px solid #333;
         }
-        
+
         .module-header {
             text-align: center;
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 2px solid var(--primary);
         }
-        
+
         .module-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--light);
             margin-bottom: 10px;
-            font-weight: 700;
         }
-        
+
         .module-description {
             font-size: 1.1rem;
             color: var(--gray-light);
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
         }
-        
+
         .content-section {
             background: #2a2a2a;
             border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 20px;
+            margin-bottom: 20px;
             border-left: 4px solid var(--primary);
         }
-        
+
         .section-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--primary);
             margin-bottom: 15px;
-            font-weight: 600;
         }
-        
+
+        /* Training Status */
+        .training-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: var(--secondary);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--info);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Quiz Container */
         .quiz-container {
             background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
             border-radius: var(--border-radius);
             padding: 25px;
             margin: 30px 0;
             border: 2px solid var(--accent);
+            display: none;
         }
-        
+
         .quiz-question {
             font-size: 1.2rem;
             color: var(--light);
             margin-bottom: 20px;
-            font-weight: 500;
         }
-        
+
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
-        
+
         .quiz-option {
             background: #333;
             border: 2px solid #444;
@@ -88,29 +228,19 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
-        
+
         .quiz-option:hover {
             background: #3a3a3a;
             border-color: var(--primary);
         }
-        
+
         .quiz-option.selected {
             background: var(--primary-light);
             border-color: var(--primary);
         }
-        
-        .quiz-option.correct {
-            background: rgba(42, 157, 143, 0.2);
-            border-color: var(--success);
-        }
-        
-        .quiz-option.incorrect {
-            background: rgba(231, 111, 81, 0.2);
-            border-color: var(--danger);
-        }
-        
+
         .option-marker {
             width: 24px;
             height: 24px;
@@ -120,31 +250,169 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 0.8rem;
-            transition: var(--transition);
         }
-        
+
         .quiz-option.selected .option-marker {
             background: var(--primary);
             border-color: var(--primary);
             color: white;
         }
-        
+
         .quiz-navigation {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 20px;
         }
-        
-        .progress-indicator {
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 100px;
+        }
+
+        /* Zara AI Chat */
+        .zara-ai {
+            background-color: #1e1e1e;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            border: 2px solid var(--accent);
+        }
+
+        .zara-header {
+            background-color: var(--secondary);
+            padding: 15px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--gray-light);
         }
-        
-        /* Certificate Styles */
+
+        .zara-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--info));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .zara-status {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .zara-personality {
+            margin-left: auto;
+            font-size: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background-color: var(--primary);
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.zara {
+            align-self: flex-start;
+            background-color: #2a2a2a;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #3a3a3a;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background-color: #2a2a2a;
+            color: var(--light);
+        }
+
+        .chat-input button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background-color: #1e1e1e;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background-color: #2a2a2a;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            color: var(--light);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            background-color: #333;
+        }
+
+        .action-btn i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Certificate Modal */
         .certificate-modal {
             display: none;
             position: fixed;
@@ -158,11 +426,11 @@
             justify-content: center;
             padding: 20px;
         }
-        
+
         .certificate-modal.active {
             display: flex;
         }
-        
+
         .certificate {
             background: linear-gradient(135deg, #0c2461, #1e3799);
             border-radius: 15px;
@@ -172,241 +440,82 @@
             text-align: center;
             color: white;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
         }
-        
+
         .certificate.bronze {
             background: linear-gradient(135deg, #cd7f32, #b08d57);
         }
-        
+
         .certificate.silver {
             background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
             color: #333;
         }
-        
+
         .certificate.gold {
             background: linear-gradient(135deg, #ffd700, #ffec8b);
             color: #333;
         }
-        
+
         .certificate.platinum {
             background: linear-gradient(135deg, #e5e4e2, #ffffff);
             color: #333;
         }
-        
-        .certificate::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            animation: float 20s linear infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(-20px, -20px) rotate(360deg); }
-        }
-        
+
         .certificate-header {
             margin-bottom: 30px;
-            position: relative;
         }
-        
+
         .certificate-logo {
             font-size: 3rem;
             margin-bottom: 15px;
         }
-        
+
         .certificate-title {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
         }
-        
-        .certificate-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-        
+
         .certificate-body {
             margin: 30px 0;
             padding: 30px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            backdrop-filter: blur(10px);
         }
-        
-        .certificate-text {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
+
         .recipient-name {
             font-size: 2rem;
             font-weight: 700;
             margin: 20px 0;
             color: var(--accent);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 10px;
-            display: inline-block;
         }
-        
-        .module-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin: 15px 0;
-            color: var(--light);
-        }
-        
-        .certificate-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .signature-area {
-            text-align: left;
-        }
-        
-        .signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            margin-bottom: 5px;
-        }
-        
-        .signature-name {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        
-        .signature-title {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        .qrcode-area {
-            text-align: right;
-        }
-        
-        .qrcode-placeholder {
-            width: 100px;
-            height: 100px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 5px;
-        }
-        
+
         .certificate-actions {
             display: flex;
             gap: 10px;
             justify-content: center;
             margin-top: 30px;
         }
-        
-        .share-dropdown {
-            position: relative;
-            display: inline-block;
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
         }
-        
-        .share-options {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #2a2a2a;
-            border-radius: var(--border-radius);
-            padding: 10px;
-            box-shadow: var(--box-shadow-lg);
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            min-width: 150px;
-            margin-bottom: 10px;
-        }
-        
-        .share-dropdown:hover .share-options {
-            display: flex;
-        }
-        
-        .share-option {
-            padding: 8px 12px;
-            border: none;
-            background: transparent;
-            color: var(--light);
-            cursor: pointer;
-            border-radius: var(--border-radius-sm);
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-        
-        .share-option:hover {
-            background: var(--primary);
-        }
-        
-        /* Zara AI Enhanced Styles */
-        .zara-training-mode {
-            border: 2px solid var(--accent);
-        }
-        
-        .zara-quiz-mode {
-            border: 2px solid var(--danger);
-        }
-        
-        .zara-celebration-mode {
-            border: 2px solid var(--success);
-        }
-        
-        .training-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
-            background: var(--secondary);
-            border-radius: var(--border-radius);
-            margin-bottom: 15px;
-        }
-        
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--success);
-            animation: pulse 2s infinite;
-        }
-        
-        .status-indicator.learning {
-            background: var(--info);
-        }
-        
-        .status-indicator.quiz {
-            background: var(--danger);
+
+        @media (max-width: 768px) {
+            .module-title {
+                font-size: 1.5rem;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header and Navigation (same as before) -->
     <header>
         <div class="container nav-container">
             <div class="logo">
@@ -425,98 +534,120 @@
     </header>
 
     <div class="container">
-        <!-- Training Module Interface -->
-        <div class="training-container">
-            <div class="module-header">
-                <h1 class="module-title">Network Security Fundamentals</h1>
-                <p class="module-description">
-                    Master the essential concepts of network security, including firewalls, VPNs, intrusion detection, 
-                    and best practices for securing network infrastructure.
-                </p>
-            </div>
-
-            <div class="training-status">
-                <div class="status-indicator learning"></div>
-                <span>Learning Mode - Zara is here to help!</span>
-            </div>
-
-            <div class="content-section">
-                <h2 class="section-title">Understanding Firewalls</h2>
-                <p>Firewalls act as a barrier between your internal network and external networks, controlling incoming and outgoing traffic based on predetermined security rules.</p>
-                
-                <div class="content-section">
-                    <h3 class="section-title">Key Concepts:</h3>
-                    <ul>
-                        <li><strong>Packet Filtering:</strong> Examines packets and blocks them based on predefined rules</li>
-                        <li><strong>Stateful Inspection:</strong> Tracks the state of network connections</li>
-                        <li><strong>Proxy Service:</strong> Acts as an intermediary between users and the services they access</li>
-                        <li><strong>Next-Generation Firewalls:</strong> Include additional features like intrusion prevention</li>
-                    </ul>
+        <div class="main-content">
+            <!-- Training Content -->
+            <div class="training-container">
+                <div class="module-header">
+                    <h1 class="module-title">Network Security Fundamentals</h1>
+                    <p class="module-description">
+                        Master the essential concepts of network security, including firewalls, VPNs, intrusion detection, 
+                        and best practices for securing network infrastructure.
+                    </p>
                 </div>
-            </div>
 
-            <!-- Quiz Section -->
-            <div class="quiz-container" id="quizSection" style="display: none;">
                 <div class="training-status">
-                    <div class="status-indicator quiz"></div>
-                    <span>Quiz Mode - Zara is observing quietly</span>
+                    <div class="status-indicator"></div>
+                    <span>Learning Mode - Zara is here to help!</span>
                 </div>
-                
-                <h2 class="section-title">Knowledge Check</h2>
-                <div id="quizContent">
-                    <!-- Quiz content will be loaded here -->
-                </div>
-                
-                <div class="quiz-navigation">
-                    <button class="btn btn-secondary" id="prevQuestion" style="display: none;">
-                        <i class="fas fa-arrow-left"></i> Previous
-                    </button>
-                    <div class="progress-indicator">
-                        Question <span id="currentQuestion">1</span> of <span id="totalQuestions">5</span>
+
+                <div class="content-section">
+                    <h2 class="section-title">Understanding Firewalls</h2>
+                    <p>Firewalls act as a barrier between your internal network and external networks, controlling incoming and outgoing traffic based on predetermined security rules.</p>
+                    
+                    <div class="content-section">
+                        <h3 class="section-title">Key Concepts:</h3>
+                        <ul>
+                            <li><strong>Packet Filtering:</strong> Examines packets and blocks them based on predefined rules</li>
+                            <li><strong>Stateful Inspection:</strong> Tracks the state of network connections</li>
+                            <li><strong>Proxy Service:</strong> Acts as an intermediary between users and the services they access</li>
+                            <li><strong>Next-Generation Firewalls:</strong> Include additional features like intrusion prevention</li>
+                        </ul>
                     </div>
-                    <button class="btn btn-primary" id="nextQuestion">
-                        Next <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container" id="quizSection">
+                    <div class="training-status">
+                        <div class="status-indicator"></div>
+                        <span>Quiz Mode - Zara is observing quietly</span>
+                    </div>
+                    
+                    <h2 class="section-title">Knowledge Check</h2>
+                    <div id="quizContent">
+                        <!-- Quiz content will be loaded here -->
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="btn btn-secondary" id="prevQuestion" style="display: none;">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <div class="progress-indicator">
+                            Question <span id="currentQuestion">1</span> of <span id="totalQuestions">5</span>
+                        </div>
+                        <button class="btn btn-primary" id="nextQuestion">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn btn-success" id="submitQuiz" style="display: none;">
+                            <i class="fas fa-check"></i> Submit Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Module Navigation -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-primary btn-lg" id="startQuiz">
+                        <i class="fas fa-play"></i> Start Quiz
                     </button>
-                    <button class="btn btn-success" id="submitQuiz" style="display: none;">
-                        <i class="fas fa-check"></i> Submit Quiz
+                    <button class="btn btn-success btn-lg" id="completeModule" style="display: none;">
+                        <i class="fas fa-trophy"></i> Complete Module
                     </button>
                 </div>
             </div>
 
-            <!-- Module Navigation -->
-            <div style="text-align: center; margin-top: 30px;">
-                <button class="btn btn-primary btn-lg" id="startQuiz">
-                    <i class="fas fa-play"></i> Start Quiz
-                </button>
-                <button class="btn btn-success btn-lg" id="completeModule" style="display: none;">
-                    <i class="fas fa-trophy"></i> Complete Module
-                </button>
-            </div>
-        </div>
-
-        <!-- Enhanced Zara AI Chat -->
-        <div class="sidebar">
-            <div class="zara-ai zara-training-mode" id="zaraChat">
-                <div class="zara-header">
-                    <div class="zara-avatar">Z</div>
-                    <div>
-                        <div class="zara-name">Zara AI - Learning Assistant</div>
-                        <div class="zara-status" id="zaraStatus">Active - Ready to help you learn!</div>
+            <!-- Sidebar with Zara AI -->
+            <div class="sidebar">
+                <div class="zara-ai">
+                    <div class="zara-header">
+                        <div class="zara-avatar">Z</div>
+                        <div>
+                            <div class="zara-name">Zara AI - Learning Assistant</div>
+                            <div class="zara-status">Active - Ready to help you learn!</div>
+                        </div>
+                        <div class="zara-personality">Learning Mode</div>
                     </div>
-                    <div class="zara-personality" id="zaraMode">Learning Mode</div>
-                </div>
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message zara">
-                        Welcome to Network Security Fundamentals! I'm here to help you understand key concepts. Feel free to ask me anything about firewalls, VPNs, or network security best practices!
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message zara">
+                            Welcome to Network Security Fundamentals! I'm here to help you understand key concepts. Feel free to ask me anything about firewalls, VPNs, or network security best practices!
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Ask Zara about network security..." id="chatInput">
+                        <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
-                <div class="chat-input">
-                    <input type="text" placeholder="Ask Zara about network security..." id="chatInput">
-                    <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+
+                <div class="quick-actions">
+                    <h3 style="margin-bottom: 15px;">Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Continue Training</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-certificate"></i>
+                            <span>My Certificates</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Team Progress</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Security Tips</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <!-- Quick Actions & Notifications (same as before) -->
         </div>
     </div>
 
@@ -528,53 +659,24 @@
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <h1 class="certificate-title">Certificate of Completion</h1>
-                <div class="certificate-subtitle">DefendIQ Enterprise Cybersecurity Training</div>
+                <p>DefendIQ Enterprise Cybersecurity Training</p>
             </div>
             
             <div class="certificate-body">
-                <p class="certificate-text">This certifies that</p>
-                <div class="recipient-name" contenteditable="true" id="recipientName">Your Name Here</div>
-                <p class="certificate-text">has successfully completed the training module</p>
-                <div class="module-name" id="certModuleName">Network Security Fundamentals</div>
-                <p class="certificate-text">demonstrating proficiency in cybersecurity principles and best practices.</p>
-            </div>
-            
-            <div class="certificate-footer">
-                <div class="signature-area">
-                    <div class="signature">MJ Mashifane</div>
-                    <div class="signature-name">MJ Mashifane</div>
-                    <div class="signature-title">Cybersecurity Lead</div>
-                </div>
-                <div class="qrcode-area">
-                    <div class="qrcode-placeholder" id="qrCode">
-                        QR Code<br>Verification
-                    </div>
-                </div>
+                <p>This certifies that</p>
+                <div class="recipient-name" contenteditable="true">Your Name Here</div>
+                <p>has successfully completed the training module</p>
+                <h3>Network Security Fundamentals</h3>
+                <p>demonstrating proficiency in cybersecurity principles and best practices.</p>
             </div>
             
             <div class="certificate-actions">
                 <button class="btn btn-primary" id="printCertificate">
                     <i class="fas fa-print"></i> Print
                 </button>
-                <div class="share-dropdown">
-                    <button class="btn btn-secondary" id="shareCertificate">
-                        <i class="fas fa-share"></i> Share
-                    </button>
-                    <div class="share-options">
-                        <button class="share-option" data-platform="linkedin">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </button>
-                        <button class="share-option" data-platform="twitter">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </button>
-                        <button class="share-option" data-platform="email">
-                            <i class="fas fa-envelope"></i> Email
-                        </button>
-                        <button class="share-option" data-platform="download">
-                            <i class="fas fa-download"></i> Download PDF
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-secondary" id="shareCertificate">
+                    <i class="fas fa-share"></i> Share
+                </button>
                 <button class="btn btn-secondary" id="closeCertificate">
                     <i class="fas fa-times"></i> Close
                 </button>
@@ -583,173 +685,77 @@
     </div>
 
     <script>
-        // Enhanced Zara AI with Training Modes
-        class ZaraAITraining {
-            constructor() {
-                this.mode = 'learning'; // learning, quiz, celebration
-                this.quizActive = false;
-                this.setupEventListeners();
-                this.initializeTraining();
-            }
-
-            setupEventListeners() {
-                // Chat functionality
-                document.getElementById('sendMessage').addEventListener('click', () => this.sendMessage());
-                document.getElementById('chatInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.sendMessage();
-                });
-
-                // Quiz controls
-                document.getElementById('startQuiz').addEventListener('click', () => this.startQuiz());
-                document.getElementById('nextQuestion').addEventListener('click', () => this.nextQuestion());
-                document.getElementById('prevQuestion').addEventListener('click', () => this.prevQuestion());
-                document.getElementById('submitQuiz').addEventListener('click', () => this.submitQuiz());
-                document.getElementById('completeModule').addEventListener('click', () => this.showCertificate());
-
-                // Certificate controls
-                document.getElementById('printCertificate').addEventListener('click', () => this.printCertificate());
-                document.getElementById('shareCertificate').addEventListener('click', () => this.toggleShareOptions());
-                document.getElementById('closeCertificate').addEventListener('click', () => this.closeCertificate());
-
-                // Share options
-                document.querySelectorAll('.share-option').forEach(option => {
-                    option.addEventListener('click', (e) => this.handleShare(e.target.dataset.platform));
-                });
-            }
-
-            initializeTraining() {
-                this.addMessage("Hello! I'm Zara, your learning assistant. I'll help you master Network Security Fundamentals. What would you like to learn about first?", 'zara');
-            }
-
-            setMode(mode) {
-                this.mode = mode;
-                const zaraChat = document.getElementById('zaraChat');
-                const zaraStatus = document.getElementById('zaraStatus');
-                const zaraMode = document.getElementById('zaraMode');
-
-                // Remove all mode classes
-                zaraChat.classList.remove('zara-training-mode', 'zara-quiz-mode', 'zara-celebration-mode');
-                
-                switch(mode) {
-                    case 'learning':
-                        zaraChat.classList.add('zara-training-mode');
-                        zaraStatus.textContent = 'Active - Ready to help you learn!';
-                        zaraMode.textContent = 'Learning Mode';
-                        break;
-                    case 'quiz':
-                        zaraChat.classList.add('zara-quiz-mode');
-                        zaraStatus.textContent = 'Observing - Good luck with your quiz!';
-                        zaraMode.textContent = 'Quiz Mode';
-                        break;
-                    case 'celebration':
-                        zaraChat.classList.add('zara-celebration-mode');
-                        zaraStatus.textContent = 'Celebrating - Congratulations!';
-                        zaraMode.textContent = 'Celebration Mode';
-                        break;
+        // Fixed JavaScript implementation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quiz questions
+            const questions = [
+                {
+                    question: "What is the primary purpose of a firewall?",
+                    options: [
+                        "To prevent unauthorized access to or from a private network",
+                        "To increase internet speed",
+                        "To manage email communications",
+                        "To backup important files"
+                    ],
+                    correct: 0
+                },
+                {
+                    question: "Which type of firewall maintains state information about network connections?",
+                    options: [
+                        "Packet Filtering Firewall",
+                        "Stateful Inspection Firewall",
+                        "Proxy Firewall",
+                        "Next-Generation Firewall"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "What does VPN stand for?",
+                    options: [
+                        "Virtual Private Network",
+                        "Verified Private Network",
+                        "Virtual Protected Network",
+                        "Verified Protected Network"
+                    ],
+                    correct: 0
                 }
-            }
+            ];
 
-            sendMessage() {
-                const input = document.getElementById('chatInput');
-                const message = input.value.trim();
-                
-                if (message) {
-                    this.addMessage(message, 'user');
-                    input.value = '';
-                    
-                    // Simulate Zara's response based on mode
-                    setTimeout(() => {
-                        if (this.mode === 'learning') {
-                            this.generateLearningResponse(message);
-                        } else if (this.mode === 'quiz') {
-                            this.addMessage("I'm quietly observing your quiz. You're doing great! Remember to trust your knowledge.", 'zara');
-                        }
-                    }, 1000);
-                }
-            }
+            let currentQuestionIndex = 0;
+            let selectedAnswers = [];
 
-            generateLearningResponse(userMessage) {
-                const responses = {
-                    'firewall': "Firewalls are essential network security devices that monitor and control incoming and outgoing network traffic. They act as a barrier between trusted internal networks and untrusted external networks.",
-                    'vpn': "A VPN (Virtual Private Network) creates a secure, encrypted connection over a less secure network, such as the internet. It helps protect your privacy and secure your data.",
-                    'intrusion': "Intrusion Detection Systems (IDS) monitor network traffic for suspicious activity and issue alerts when potential threats are detected.",
-                    'default': "That's an interesting question about network security! Based on what we've covered, I recommend focusing on understanding how different security layers work together to protect networks."
-                };
+            // DOM Elements
+            const startQuizBtn = document.getElementById('startQuiz');
+            const quizSection = document.getElementById('quizSection');
+            const quizContent = document.getElementById('quizContent');
+            const prevQuestionBtn = document.getElementById('prevQuestion');
+            const nextQuestionBtn = document.getElementById('nextQuestion');
+            const submitQuizBtn = document.getElementById('submitQuiz');
+            const currentQuestionSpan = document.getElementById('currentQuestion');
+            const totalQuestionsSpan = document.getElementById('totalQuestions');
+            const completeModuleBtn = document.getElementById('completeModule');
+            const certificateModal = document.getElementById('certificateModal');
 
-                let response = responses.default;
-                const lowerMessage = userMessage.toLowerCase();
+            // Initialize
+            totalQuestionsSpan.textContent = questions.length;
 
-                for (const [key, value] of Object.entries(responses)) {
-                    if (lowerMessage.includes(key)) {
-                        response = value;
-                        break;
-                    }
-                }
+            // Start Quiz
+            startQuizBtn.addEventListener('click', function() {
+                quizSection.style.display = 'block';
+                startQuizBtn.style.display = 'none';
+                loadQuestion(0);
+                addChatMessage("Quiz started! I'll be quiet now so you can focus. You've got this! 💪", 'zara');
+            });
 
-                this.addMessage(response, 'zara');
-            }
-
-            addMessage(text, sender) {
-                const chatMessages = document.getElementById('chatMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', sender);
-                messageDiv.textContent = text;
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            // Quiz Management
-            startQuiz() {
-                this.setMode('quiz');
-                document.getElementById('quizSection').style.display = 'block';
-                document.getElementById('startQuiz').style.display = 'none';
-                this.loadQuestion(0);
-                this.addMessage("Quiz started! I'll be quiet now so you can focus. You've got this! 💪", 'zara');
-            }
-
-            loadQuestion(questionIndex) {
-                const questions = [
-                    {
-                        question: "What is the primary purpose of a firewall?",
-                        options: [
-                            "To prevent unauthorized access to or from a private network",
-                            "To increase internet speed",
-                            "To manage email communications",
-                            "To backup important files"
-                        ],
-                        correct: 0
-                    },
-                    {
-                        question: "Which type of firewall maintains state information about network connections?",
-                        options: [
-                            "Packet Filtering Firewall",
-                            "Stateful Inspection Firewall",
-                            "Proxy Firewall",
-                            "Next-Generation Firewall"
-                        ],
-                        correct: 1
-                    },
-                    {
-                        question: "What does VPN stand for?",
-                        options: [
-                            "Virtual Private Network",
-                            "Verified Private Network",
-                            "Virtual Protected Network",
-                            "Verified Protected Network"
-                        ],
-                        correct: 0
-                    }
-                ];
-
-                const currentQuestion = questions[questionIndex];
-                const quizContent = document.getElementById('quizContent');
-                
+            // Load Question
+            function loadQuestion(index) {
+                const question = questions[index];
                 quizContent.innerHTML = `
-                    <div class="quiz-question">${currentQuestion.question}</div>
+                    <div class="quiz-question">${question.question}</div>
                     <div class="quiz-options">
-                        ${currentQuestion.options.map((option, index) => `
-                            <div class="quiz-option" data-index="${index}">
-                                <div class="option-marker">${String.fromCharCode(65 + index)}</div>
+                        ${question.options.map((option, i) => `
+                            <div class="quiz-option" data-index="${i}">
+                                <div class="option-marker">${String.fromCharCode(65 + i)}</div>
                                 <div class="option-text">${option}</div>
                             </div>
                         `).join('')}
@@ -758,44 +764,45 @@
 
                 // Add event listeners to options
                 quizContent.querySelectorAll('.quiz-option').forEach(option => {
-                    option.addEventListener('click', () => this.selectAnswer(option.dataset.index));
+                    option.addEventListener('click', function() {
+                        selectAnswer(parseInt(this.dataset.index));
+                    });
                 });
 
                 // Update navigation
-                document.getElementById('currentQuestion').textContent = questionIndex + 1;
-                document.getElementById('totalQuestions').textContent = questions.length;
-                
-                document.getElementById('prevQuestion').style.display = questionIndex > 0 ? 'block' : 'none';
-                document.getElementById('nextQuestion').style.display = questionIndex < questions.length - 1 ? 'block' : 'none';
-                document.getElementById('submitQuiz').style.display = questionIndex === questions.length - 1 ? 'block' : 'none';
+                currentQuestionSpan.textContent = index + 1;
+                prevQuestionBtn.style.display = index > 0 ? 'block' : 'none';
+                nextQuestionBtn.style.display = index < questions.length - 1 ? 'block' : 'none';
+                submitQuizBtn.style.display = index === questions.length - 1 ? 'block' : 'none';
 
-                this.currentQuestionIndex = questionIndex;
-                this.questions = questions;
+                currentQuestionIndex = index;
             }
 
-            selectAnswer(selectedIndex) {
+            // Select Answer
+            function selectAnswer(answerIndex) {
                 const options = document.querySelectorAll('.quiz-option');
                 options.forEach(option => option.classList.remove('selected'));
-                options[selectedIndex].classList.add('selected');
-                this.selectedAnswers = this.selectedAnswers || [];
-                this.selectedAnswers[this.currentQuestionIndex] = parseInt(selectedIndex);
+                options[answerIndex].classList.add('selected');
+                selectedAnswers[currentQuestionIndex] = answerIndex;
             }
 
-            nextQuestion() {
-                if (this.currentQuestionIndex < this.questions.length - 1) {
-                    this.loadQuestion(this.currentQuestionIndex + 1);
+            // Navigation
+            nextQuestionBtn.addEventListener('click', function() {
+                if (currentQuestionIndex < questions.length - 1) {
+                    loadQuestion(currentQuestionIndex + 1);
                 }
-            }
+            });
 
-            prevQuestion() {
-                if (this.currentQuestionIndex > 0) {
-                    this.loadQuestion(this.currentQuestionIndex - 1);
+            prevQuestionBtn.addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    loadQuestion(currentQuestionIndex - 1);
                 }
-            }
+            });
 
-            submitQuiz() {
-                const score = this.calculateScore();
-                this.setMode('celebration');
+            // Submit Quiz
+            submitQuizBtn.addEventListener('click', function() {
+                const score = calculateScore();
+                completeModuleBtn.style.display = 'block';
                 
                 let message = "";
                 if (score === 100) {
@@ -808,88 +815,82 @@
                     message = "You've made a good start! Let's review the material together and try again!";
                 }
 
-                this.addMessage(`${message} You scored ${score}% on the quiz!`, 'zara');
-                document.getElementById('completeModule').style.display = 'block';
-            }
+                addChatMessage(`${message} You scored ${score}% on the quiz!`, 'zara');
+            });
 
-            calculateScore() {
+            // Calculate Score
+            function calculateScore() {
                 let correct = 0;
-                this.selectedAnswers.forEach((answer, index) => {
-                    if (answer === this.questions[index].correct) {
+                selectedAnswers.forEach((answer, index) => {
+                    if (answer === questions[index].correct) {
                         correct++;
                     }
                 });
-                return Math.round((correct / this.questions.length) * 100);
+                return Math.round((correct / questions.length) * 100);
             }
 
-            // Certificate Management
-            showCertificate() {
-                const score = this.calculateScore();
+            // Complete Module
+            completeModuleBtn.addEventListener('click', function() {
+                const score = calculateScore();
                 let certificateLevel = 'bronze';
                 
-                if (score >= 90) certificateLevel = 'platinum';
-                else if (score >= 80) certificateLevel = 'gold';
-                else if (score >= 70) certificateLevel = 'silver';
+                if (score === 100) certificateLevel = 'platinum';
+                else if (score >= 90) certificateLevel = 'gold';
+                else if (score >= 80) certificateLevel = 'silver';
                 
                 const certificate = document.getElementById('certificate');
                 certificate.className = `certificate ${certificateLevel}`;
                 
-                document.getElementById('certificateModal').classList.add('active');
-                this.generateQRCode();
-                
-                this.addMessage(`Congratulations! You've earned a ${certificateLevel.toUpperCase()} level certificate! 🎓 Your hard work has paid off!`, 'zara');
-            }
+                certificateModal.classList.add('active');
+                addChatMessage(`Congratulations! You've earned a ${certificateLevel.toUpperCase()} level certificate! 🎓`, 'zara');
+            });
 
-            generateQRCode() {
-                const qrElement = document.getElementById('qrCode');
-                const verificationData = {
-                    recipient: document.getElementById('recipientName').textContent,
-                    module: 'Network Security Fundamentals',
-                    date: new Date().toISOString().split('T')[0],
-                    verification: 'defendiq-' + Math.random().toString(36).substr(2, 9).toUpperCase()
-                };
-                
-                QRCode.toCanvas(qrElement, JSON.stringify(verificationData), function (error) {
-                    if (error) console.error(error);
-                });
-            }
+            // Chat functionality
+            const chatInput = document.getElementById('chatInput');
+            const sendMessageBtn = document.getElementById('sendMessage');
 
-            printCertificate() {
-                window.print();
-            }
+            sendMessageBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') sendMessage();
+            });
 
-            toggleShareOptions() {
-                // Handled by CSS hover
-            }
-
-            handleShare(platform) {
-                const message = `I just completed the Network Security Fundamentals course on DefendIQ Enterprise! 🎓 #Cybersecurity #DefendIQ`;
-                
-                switch(platform) {
-                    case 'linkedin':
-                        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&summary=${encodeURIComponent(message)}`, '_blank');
-                        break;
-                    case 'twitter':
-                        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
-                        break;
-                    case 'email':
-                        window.open(`mailto:?subject=DefendIQ Certificate&body=${encodeURIComponent(message + ' ' + window.location.href)}`);
-                        break;
-                    case 'download':
-                        // In a real implementation, this would generate a PDF
-                        alert('PDF download functionality would be implemented here!');
-                        break;
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addChatMessage(message, 'user');
+                    chatInput.value = '';
+                    
+                    // Simulate Zara's response
+                    setTimeout(() => {
+                        const responses = [
+                            "That's a great question about network security!",
+                            "I'd be happy to explain that concept further.",
+                            "Based on the module content, here's what you need to know...",
+                            "That's an important aspect of cybersecurity!"
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addChatMessage(randomResponse, 'zara');
+                    }, 1000);
                 }
             }
 
-            closeCertificate() {
-                document.getElementById('certificateModal').classList.remove('active');
+            function addChatMessage(text, sender) {
+                const chatMessages = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', sender);
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-        }
 
-        // Initialize the enhanced training system
-        document.addEventListener('DOMContentLoaded', () => {
-            new ZaraAITraining();
+            // Certificate actions
+            document.getElementById('closeCertificate').addEventListener('click', function() {
+                certificateModal.classList.remove('active');
+            });
+
+            document.getElementById('printCertificate').addEventListener('click', function() {
+                window.print();
+            });
         });
     </script>
 </body>
