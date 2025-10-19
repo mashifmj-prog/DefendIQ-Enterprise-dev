@@ -192,11 +192,12 @@ body {
     transform: scale(1.1);
 }
 
-/* Layout */
+/* Layout - FIXED FOR WIDER DISPLAY */
 .container {
     display: grid;
     grid-template-columns: 280px 1fr;
     min-height: 100vh;
+    max-width: 100%;
 }
 
 /* Enhanced Sidebar */
@@ -308,7 +309,7 @@ body {
     opacity: 0.8;
 }
 
-/* Main Content Styles */
+/* Main Content Styles - FIXED FOR WIDER DISPLAY */
 .main-content {
     padding: var(--spacing-xl) var(--spacing-2xl);
     margin-left: 280px;
@@ -316,9 +317,10 @@ body {
     min-height: 100vh;
     background-color: var(--bg-primary);
     transition: background-color var(--transition-normal);
+    max-width: calc(100vw - 280px);
 }
 
-/* Enhanced Header */
+/* Enhanced Header - CENTERED CONTENT */
 .header {
     display: flex;
     justify-content: space-between;
@@ -326,6 +328,7 @@ body {
     margin-bottom: var(--spacing-2xl);
     padding-bottom: var(--spacing-lg);
     border-bottom: 2px solid var(--border-light);
+    max-width: 100%;
 }
 
 .header h2 {
@@ -384,12 +387,13 @@ body {
     color: var(--text-muted);
 }
 
-/* Enhanced Dashboard Cards - BETTER CONTRAST */
+/* Enhanced Dashboard Cards - BETTER DISTRIBUTION */
 .dashboard-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-2xl);
+    max-width: 100%;
 }
 
 .card {
@@ -476,12 +480,13 @@ body {
     line-height: 1.5;
 }
 
-/* Analytics Grid */
+/* Analytics Grid - BETTER DISTRIBUTION */
 .analytics-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-2xl);
+    max-width: 100%;
 }
 
 .chart-container {
@@ -561,12 +566,13 @@ body {
 .rank-3 { background: var(--bronze); }
 .rank-4 { background: var(--primary); }
 
-/* Training Modules */
+/* Training Modules - BETTER DISTRIBUTION */
 .training-modules {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-2xl);
+    max-width: 100%;
 }
 
 .module-card {
@@ -772,7 +778,7 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-/* Enhanced Zara AI */
+/* Enhanced Zara AI - BETTER DISTRIBUTION */
 .zara-ai {
     background: var(--bg-card);
     border-radius: var(--radius-xl);
@@ -781,6 +787,7 @@ body {
     margin-top: var(--spacing-2xl);
     border: 2px solid var(--border-light);
     transition: all var(--transition-normal);
+    max-width: 100%;
 }
 
 .zara-ai:hover {
@@ -1025,14 +1032,42 @@ body {
     }
 }
 
-/* Responsive Design */
+/* Responsive Design - IMPROVED FOR WIDER SCREENS */
+@media (min-width: 1400px) {
+    .container {
+        grid-template-columns: 300px 1fr;
+    }
+    
+    .sidebar {
+        width: 300px;
+    }
+    
+    .main-content {
+        margin-left: 300px;
+        max-width: calc(100vw - 300px);
+        padding: var(--spacing-2xl) var(--spacing-2xl);
+    }
+    
+    .dashboard-cards {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+    
+    .training-modules {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    .analytics-grid {
+        grid-template-columns: 3fr 1fr;
+    }
+}
+
 @media (max-width: 1200px) {
     .analytics-grid {
         grid-template-columns: 1fr;
     }
     
     .dashboard-cards {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 }
 
@@ -1053,6 +1088,7 @@ body {
     .main-content {
         margin-left: 0;
         padding: var(--spacing-lg);
+        max-width: 100%;
     }
     
     .mobile-menu-btn {
@@ -1137,6 +1173,7 @@ body {
     .main-content {
         margin-left: 0;
         padding: 0;
+        max-width: 100%;
     }
     
     .certificate {
@@ -1229,3 +1266,38 @@ a:focus-visible {
 
 .w-100 { width: 100%; }
 .h-100 { height: 100%; }
+
+/* Center content and improve distribution */
+.content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
+
+.grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Ensure proper content distribution */
+.main-content > * {
+    max-width: 100%;
+}
+
+/* Fix for very wide screens */
+@media (min-width: 1920px) {
+    .main-content {
+        padding: var(--spacing-2xl) 4rem;
+    }
+    
+    .dashboard-cards {
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    }
+    
+    .training-modules {
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+}
