@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DefendIQ Enterprise - Advanced Analytics & Gamification</title>
+    <title>DefendIQ Enterprise - Security Training Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -75,12 +75,16 @@
             color: var(--text-primary);
             transition: all 0.3s ease;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Full Screen Layout */
         .container {
             display: grid;
             grid-template-columns: 280px 1fr;
             min-height: 100vh;
+            width: 100vw;
+            max-width: 100%;
         }
 
         /* Enhanced Sidebar */
@@ -174,11 +178,14 @@
             opacity: 0.8;
         }
 
-        /* Main Content */
+        /* Main Content - FULL SCREEN */
         .main-content {
             padding: 2rem 3rem;
             margin-left: 280px;
             background: var(--bg-primary);
+            min-height: 100vh;
+            width: calc(100vw - 280px);
+            max-width: 100%;
         }
 
         /* Enhanced Header */
@@ -189,6 +196,7 @@
             margin-bottom: 3rem;
             padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--border-light);
+            width: 100%;
         }
 
         .header h2 {
@@ -224,12 +232,13 @@
             box-shadow: var(--shadow-md);
         }
 
-        /* Enhanced Cards */
+        /* Enhanced Cards - BETTER MARGINS */
         .dashboard-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
+            width: 100%;
         }
 
         .card {
@@ -292,12 +301,13 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Analytics Grid */
+        /* Analytics Grid - FULL WIDTH */
         .analytics-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 2rem;
             margin-bottom: 3rem;
+            width: 100%;
         }
 
         .chart-container {
@@ -306,11 +316,17 @@
             padding: 2rem;
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .chart-container:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
         }
 
         .chart-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
         }
@@ -328,6 +344,12 @@
             padding: 2rem;
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
         }
 
         .leaderboard-item {
@@ -338,11 +360,12 @@
             margin-bottom: 0.75rem;
             transition: all 0.3s ease;
             border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
         }
 
         .leaderboard-item:hover {
             transform: translateX(5px);
-            background: var(--bg-secondary);
+            background: var(--bg-card);
         }
 
         .rank {
@@ -362,12 +385,13 @@
         .rank-3 { background: var(--points-bronze); }
         .rank-4 { background: var(--primary); }
 
-        /* Training Modules Grid */
+        /* Training Modules Grid - FULL WIDTH */
         .training-modules {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
+            width: 100%;
         }
 
         .module-card {
@@ -454,13 +478,14 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Enhanced Zara AI */
+        /* Enhanced Zara AI - FULL WIDTH */
         .zara-ai {
             background: var(--bg-card);
             border-radius: 20px;
             box-shadow: var(--shadow-lg);
             overflow: hidden;
             border: 1px solid var(--border-light);
+            width: 100%;
         }
 
         .zara-header {
@@ -599,6 +624,7 @@
             .main-content {
                 margin-left: 0;
                 padding: 1.5rem;
+                width: 100%;
             }
             
             .dashboard-cards, .training-modules {
@@ -634,26 +660,26 @@
                 </div>
                 <div class="user-stats">
                     <div class="stat">
-                        <div class="stat-value">1,250</div>
+                        <div class="stat-value">1,420</div>
                         <div class="stat-label">Points</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value">12</div>
+                        <div class="stat-value">15</div>
                         <div class="stat-label">Badges</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-value">4</div>
+                        <div class="stat-value">6</div>
                         <div class="stat-label">Certs</div>
                     </div>
                 </div>
             </div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Main Content - FULL SCREEN -->
         <main class="main-content">
             <!-- Enhanced Header -->
             <div class="header">
-                <h2>Security Training Analytics</h2>
+                <h2>Security Training Analytics Dashboard</h2>
                 <div class="header-actions">
                     <div class="theme-toggle">
                         <i class="fas fa-moon"></i>
@@ -661,7 +687,7 @@
                     </div>
                     <div style="display: flex; align-items: center; background: var(--bg-card); padding: 0.75rem 1.5rem; border-radius: 15px; border: 1px solid var(--border-light);">
                         <i class="fas fa-coins" style="color: var(--points-gold); margin-right: 0.5rem;"></i>
-                        <span style="font-weight: 600;">1,250</span>
+                        <span style="font-weight: 600;">1,420</span>
                     </div>
                 </div>
             </div>
@@ -675,8 +701,8 @@
                             <i class="fas fa-chart-line"></i>
                         </div>
                     </div>
-                    <div class="card-value">87%</div>
-                    <div style="color: var(--text-muted);">+5% from last month</div>
+                    <div class="card-value">89%</div>
+                    <div style="color: var(--text-muted);">+7% from last month</div>
                 </div>
                 
                 <div class="card">
@@ -686,8 +712,8 @@
                             <i class="fas fa-trophy"></i>
                         </div>
                     </div>
-                    <div class="card-value">156</div>
-                    <div style="color: var(--text-muted);">+24 this month</div>
+                    <div class="card-value">167</div>
+                    <div style="color: var(--text-muted);">+18 this month</div>
                 </div>
                 
                 <div class="card">
@@ -700,6 +726,17 @@
                     <div class="card-value">Low</div>
                     <div style="color: var(--text-muted);">Excellent security posture</div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Active Learners</div>
+                        <div class="card-icon" style="background: var(--gradient-warning);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="card-value">28</div>
+                    <div style="color: var(--text-muted);">Currently training</div>
+                </div>
             </div>
 
             <!-- Analytics Grid -->
@@ -707,43 +744,53 @@
                 <div class="chart-container">
                     <div class="chart-header">
                         <div class="chart-title">Training Completion Trends</div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="btn" style="padding: 0.5rem 1rem; background: var(--bg-secondary); border: 1px solid var(--border-light);">Weekly</button>
+                            <button class="btn" style="padding: 0.5rem 1rem; background: var(--primary); color: white;">Monthly</button>
+                            <button class="btn" style="padding: 0.5rem 1rem; background: var(--bg-secondary); border: 1px solid var(--border-light);">Quarterly</button>
+                        </div>
                     </div>
                     <div style="height: 300px; background: var(--bg-secondary); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                        Interactive Chart Area
+                        <div style="text-align: center;">
+                            <i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <div>Interactive Analytics Chart</div>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Showing monthly completion rates</div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="leaderboard">
                     <div class="chart-header">
                         <div class="chart-title">Top Performers</div>
+                        <i class="fas fa-crown" style="color: var(--points-gold);"></i>
                     </div>
                     <div class="leaderboard-list">
                         <div class="leaderboard-item">
                             <div class="rank rank-1">1</div>
                             <div>
                                 <div style="font-weight: 600;">Sarah Chen</div>
-                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,850 points</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,950 points • 98% avg</div>
                             </div>
                         </div>
                         <div class="leaderboard-item">
                             <div class="rank rank-2">2</div>
                             <div>
                                 <div style="font-weight: 600;">Mike Rodriguez</div>
-                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,720 points</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,780 points • 95% avg</div>
                             </div>
                         </div>
                         <div class="leaderboard-item">
                             <div class="rank rank-3">3</div>
                             <div>
                                 <div style="font-weight: 600;">Emily Watson</div>
-                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,680 points</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,720 points • 93% avg</div>
                             </div>
                         </div>
                         <div class="leaderboard-item">
                             <div class="rank rank-4">4</div>
                             <div>
                                 <div style="font-weight: 600;">You</div>
-                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,250 points</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">1,420 points • 89% avg</div>
                             </div>
                         </div>
                     </div>
@@ -753,10 +800,77 @@
             <!-- Training Modules -->
             <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700;">Security Training Modules</h3>
             <div class="training-modules">
-                <!-- Module cards would go here -->
+                <div class="module-card">
+                    <div class="module-header network">
+                        <div class="module-badge">In Progress</div>
+                        <div class="module-title">Network Security</div>
+                        <div class="module-description">Protect your network infrastructure from threats and attacks</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>Progress</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill network" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn" style="background: transparent; border: 1px solid var(--border-light);">Resume</button>
+                            <button class="btn btn-primary take-quiz" data-module="network">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="module-card">
+                    <div class="module-header phishing">
+                        <div class="module-badge">Completed</div>
+                        <div class="module-title">Phishing Awareness</div>
+                        <div class="module-description">Identify and avoid sophisticated phishing attempts</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>Progress</span>
+                                <span>100%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill phishing" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn" style="background: transparent; border: 1px solid var(--border-light);">Review</button>
+                            <button class="btn btn-primary take-quiz" data-module="phishing">Retake Quiz</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="module-card">
+                    <div class="module-header password">
+                        <div class="module-badge">Available</div>
+                        <div class="module-title">Password Security</div>
+                        <div class="module-description">Create and manage secure passwords and authentication</div>
+                    </div>
+                    <div class="module-content">
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>Progress</span>
+                                <span>0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill password" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn" style="background: transparent; border: 1px solid var(--border-light);">Start</button>
+                            <button class="btn btn-primary take-quiz" data-module="password">Take Quiz</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Enhanced Zara AI -->
+            <!-- Enhanced Zara AI with Better Intelligence -->
             <div class="zara-ai">
                 <div class="zara-header">
                     <div class="zara-avatar">
@@ -764,35 +878,85 @@
                     </div>
                     <div>
                         <div style="font-size: 1.2rem; font-weight: 600;">Zara AI Assistant</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">Ready to help with your security training</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">
+                            <span class="status-indicator"></span>
+                            Advanced Security Training Coach - Online
+                        </div>
                     </div>
                 </div>
                 <div class="zara-chat" id="chat-messages">
                     <div class="message ai">
-                        <strong>Zara:</strong> Welcome back, John! I see you've made great progress on the Phishing Awareness module. Ready to continue your training journey?
+                        <strong>Zara:</strong> Welcome back, John! I've analyzed your team's progress - you're doing excellent work with an 89% completion rate! 
                     </div>
                     <div class="message ai">
-                        <strong>Zara:</strong> Based on your team's performance, I recommend focusing on Data Protection next. Your team has a 92% completion rate so far!
+                        <strong>Zara:</strong> I notice your Network Security module is at 75%. Would you like me to help you prepare for the final assessment? I can provide personalized practice questions.
+                    </div>
+                    <div class="message ai">
+                        <strong>Zara:</strong> Based on industry trends, I recommend focusing on Password Security next. Your team's password hygiene score could improve by 23% with this training.
                     </div>
                 </div>
                 <div class="zara-input">
-                    <input type="text" placeholder="Ask Zara about training, achievements, or security..." style="flex: 1; padding: 1rem; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-primary); color: var(--text-primary);">
-                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                    <input type="text" id="user-input" placeholder="Ask Zara about training recommendations, security tips, or team analytics..." style="flex: 1; padding: 1rem; border: 1px solid var(--border-light); border-radius: 12px; background: var(--bg-primary); color: var(--text-primary);">
+                    <button class="btn btn-primary" id="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
         </main>
     </div>
 
+    <!-- Certificate Modal -->
+    <div class="modal" id="certificate-modal">
+        <div class="modal-content">
+            <div class="certificate network" id="certificate-content">
+                <div class="certificate-badge badge-gold" id="certificate-badge">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h1 class="certificate-title" id="certificate-title">Gold Certificate</h1>
+                <p class="certificate-subtitle">This certifies that</p>
+                
+                <div class="certificate-details">
+                    <h2 class="certificate-name" id="certificate-name">John Doe</h2>
+                    <h3 class="certificate-module" id="certificate-module">Network Security</h3>
+                    <p class="certificate-score" id="certificate-score">has successfully completed the training with excellence</p>
+                </div>
+                
+                <div class="certificate-qr">
+                    <div style="text-align: center;">
+                        <i class="fas fa-qrcode" style="font-size: 3rem; color: var(--text-muted);"></i>
+                        <div style="font-size: 0.7rem; margin-top: 0.5rem;">Scan to verify</div>
+                    </div>
+                </div>
+                
+                <div class="certificate-footer">
+                    <p>Issued on <span id="certificate-date">November 28, 2023</span></p>
+                    <p>Certificate ID: <span id="certificate-id">DEF-IQ-NS-2023-0015</span></p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" style="background: transparent; border: 1px solid var(--border-light);" id="close-certificate">Close</button>
+                <button class="btn btn-primary" id="share-certificate">
+                    <i class="fas fa-share"></i> Share
+                </button>
+                <button class="btn btn-primary" id="print-certificate">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Theme Toggle Functionality
+        // Enhanced Theme Toggle Functionality
         document.querySelector('.theme-toggle').addEventListener('click', function() {
             const isDark = document.body.getAttribute('data-theme') === 'dark';
             if (isDark) {
                 document.body.removeAttribute('data-theme');
                 localStorage.setItem('defendiq-theme', 'light');
+                this.classList.remove('active');
             } else {
                 document.body.setAttribute('data-theme', 'dark');
                 localStorage.setItem('defendiq-theme', 'dark');
+                this.classList.add('active');
             }
         });
 
@@ -800,35 +964,105 @@
         const savedTheme = localStorage.getItem('defendiq-theme');
         if (savedTheme === 'dark') {
             document.body.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-toggle').classList.add('active');
         }
 
-        // Enhanced Zara AI Chat
-        document.querySelector('.zara-input button').addEventListener('click', sendMessage);
-        document.querySelector('.zara-input input').addEventListener('keypress', function(e) {
+        // Enhanced Zara AI Chat with Better Intelligence
+        document.getElementById('send-btn').addEventListener('click', sendMessage);
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') sendMessage();
         });
 
+        // Enhanced AI Responses Database
+        const zaraKnowledge = {
+            greetings: [
+                "Hello! I'm Zara, your AI security training assistant. How can I help you today?",
+                "Hi there! Ready to boost your security knowledge?",
+                "Welcome back! I see you've been making great progress."
+            ],
+            training: [
+                "Based on your progress, I recommend focusing on Network Security next. You're 75% complete!",
+                "Your team excels in Phishing Awareness with a 95% success rate. Great job!",
+                "I can create a personalized study plan for Password Security if you'd like.",
+                "The Data Protection module has new content about GDPR compliance. Want me to schedule it?"
+            ],
+            analytics: [
+                "Your team's overall completion rate is 89%, which is above industry average!",
+                "Security risk score is Low - excellent work maintaining compliance standards.",
+                "Top performer Sarah Chen has completed all modules with 98% average score.",
+                "Monthly training engagement has increased by 15% compared to last quarter."
+            ],
+            certificates: [
+                "You've earned 6 certificates so far! Your highest achievement is Gold in Phishing Awareness.",
+                "Team has issued 167 certificates this year. That's a 25% increase from last year!",
+                "Would you like to see your certificate progress for each module?",
+                "Your next certificate milestone is just 2 modules away!"
+            ],
+            security: [
+                "Recent phishing attacks show increased sophistication in CEO impersonation.",
+                "Multi-factor authentication adoption has reduced security incidents by 67%.",
+                "I recommend reviewing password policies - 40% of your team uses weak passwords.",
+                "Network segmentation could reduce your attack surface by 30%."
+            ],
+            help: [
+                "I can help with: training recommendations, progress analytics, certificate tracking, and security best practices.",
+                "Ask me about: module completion, team performance, security tips, or achievement goals.",
+                "I provide personalized coaching based on your learning patterns and team analytics."
+            ]
+        };
+
         function sendMessage() {
-            const input = document.querySelector('.zara-input input');
+            const input = document.getElementById('user-input');
             const message = input.value.trim();
             
             if (message) {
                 addMessage(message, 'user');
                 input.value = '';
                 
-                // Simulate AI response
+                // Enhanced AI response with better intelligence
                 setTimeout(() => {
-                    const responses = [
-                        "Great question! Based on your progress, I'd recommend focusing on the advanced modules next.",
-                        "I can help you with that! Your team's current completion rate is 87%, which is excellent.",
-                        "That's an important security topic. Let me pull up the relevant training materials for you.",
-                        "I notice you've been making great progress! Would you like to set new training goals?",
-                        "Based on analytics, your team excels in phishing detection but could improve in data encryption practices."
-                    ];
-                    const response = responses[Math.floor(Math.random() * responses.length)];
+                    const response = generateAIResponse(message);
                     addMessage(`<strong>Zara:</strong> ${response}`, 'ai');
                 }, 1000);
             }
+        }
+
+        function generateAIResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Enhanced keyword matching with context awareness
+            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                return getRandomResponse(zaraKnowledge.greetings);
+            }
+            else if (message.includes('train') || message.includes('learn') || message.includes('module')) {
+                return getRandomResponse(zaraKnowledge.training);
+            }
+            else if (message.includes('analytics') || message.includes('progress') || message.includes('stats')) {
+                return getRandomResponse(zaraKnowledge.analytics);
+            }
+            else if (message.includes('certificate') || message.includes('achievement') || message.includes('badge')) {
+                return getRandomResponse(zaraKnowledge.certificates);
+            }
+            else if (message.includes('security') || message.includes('phishing') || message.includes('password')) {
+                return getRandomResponse(zaraKnowledge.security);
+            }
+            else if (message.includes('help') || message.includes('what can you do')) {
+                return getRandomResponse(zaraKnowledge.help);
+            }
+            else {
+                // Fallback with contextual awareness
+                const fallbacks = [
+                    "That's an interesting question! Based on your training history, I'd be happy to help with that.",
+                    "I can provide insights on that topic. Would you like me to check the latest security training data?",
+                    "Let me analyze that for you. Meanwhile, have you considered reviewing the Network Security module?",
+                    "I can help with that! Your team's current focus should be on completing the Password Security module."
+                ];
+                return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+            }
+        }
+
+        function getRandomResponse(responses) {
+            return responses[Math.floor(Math.random() * responses.length)];
         }
 
         function addMessage(text, sender) {
@@ -840,17 +1074,39 @@
             chat.scrollTop = chat.scrollHeight;
         }
 
-        // Simulate progress animations
-        document.querySelectorAll('.progress-fill').forEach(progress => {
-            const width = progress.style.width;
-            progress.style.width = '0%';
-            setTimeout(() => {
-                progress.style.width = width;
-            }, 500);
+        // Certificate Generation
+        document.querySelectorAll('.take-quiz').forEach(button => {
+            button.addEventListener('click', function() {
+                const module = this.getAttribute('data-module');
+                generateCertificate(module);
+            });
+        });
+
+        function generateCertificate(module) {
+            const modal = document.getElementById('certificate-modal');
+            modal.classList.add('active');
+        }
+
+        // Close certificate modal
+        document.getElementById('close-certificate').addEventListener('click', function() {
+            document.getElementById('certificate-modal').classList.remove('active');
         });
 
         // Add pulse animation to important elements
-        document.querySelector('.card-icon').classList.add('pulse');
+        document.querySelectorAll('.card-icon').forEach(icon => {
+            icon.classList.add('pulse');
+        });
+
+        // Simulate progress animations
+        setTimeout(() => {
+            document.querySelectorAll('.progress-fill').forEach(progress => {
+                const width = progress.style.width;
+                progress.style.width = '0%';
+                setTimeout(() => {
+                    progress.style.width = width;
+                }, 500);
+            });
+        }, 1000);
     </script>
 </body>
 </html>
